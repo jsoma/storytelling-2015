@@ -3,7 +3,19 @@
 <html>
 <head>
 	<title>my tiny d3 project</title>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+	<script>
+		$(document).ready( function() {
+			$("h1").css()
+			$("rect").css('x','39');
+		};
+			// $("p");
+			// $(".callout");
+			// $("p").css('background','red');
+			// $("p").css('color','green');	
+
+	</script>
 
 
 </head>
@@ -47,14 +59,14 @@
 			var rectangles = d3.selectAll("rect");
 
 			console.log(rectangles);
-			rectangles.style('fill', "white");
+			rectangles.style('fill', "white", 'fill-opacity'="0.7");
 			var datapoints = [10, 140, 78, 111, 20 ];
 			rectangles.data(datapoints);
             //loop though to set the width 
 			rectangles.attr("width", function(d) {
 				console.log(d);
 				return (d*2);
-			});
+				);
 
 			rectangles.attr('width', 0)
 					.transition()
