@@ -29,13 +29,13 @@ You'll want to install the [Track URL](https://github.com/jsoma/track_url) plugi
 
 Beginning discussion of what makes a good visualization, and jumping into HTML, CSS and D3.
 
-[01-02/](Week 1 notes)
+[Week 1 notes](class-01-02)
 
 ### Week 2
 
 Continued discussion of D3.
 
-[03-04/](Week 2 notes)
+[Week 2 notes](class-03-04)
 
 ---
 
