@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+	<script src="http://gsgd.co.uk/sandbox/jquery/easing/jquery.easing.compatibility.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+</head>
+<body>
+<div>
+
+
+<svg width="400" height="400">
+			<rect y="10" x="30" width="15px" height="15px"> </rect>
+			<rect y="40" x="30" width="15px" height="15px"> </rect>
+			<rect y="70" x="30" width="15px" height="15px"> </rect>
+			<rect y="100" x="30" width="15px" height="15px"> </rect>
+			<rect y="130" x="30" width="15px" height="15px"> </rect>
+					
+		</svg>
+</script>
+
+<script>
+
+			var rectangle = d3.selectAll("rect");
+			console.log(rectangle);
+			rectangle.style('fill', '#F5F9FA');
+
+
+			var datapoints = [10, 140, 78, 111, 20]
+
+			rectangle.data(datapoints);
+			rectangle.attr('y', function(d) {
+				console.log(d);
+				return Math.sqrt(50*d);	
+			});
+
+			rectangle.attr('x', 30)
+					.transition()
+					.duration(1000)
+					.style('fill', '#83888A')
+					.attr('x', function(d) {
+						return Math.sqrt(d * 100);
+					});
+
+		
+</script>	
+<svg width="400" height="400">
+				<circle r="5" cx="10" cy="10"></circle>
+				<circle r="5" cx="70" cy="70"></circle>
+				<circle r="5" cx="130" cy="130"></circle>
+				<circle r="5" cx="190" cy="190"></circle>
+				<circle r="5" cx="250" cy="250"></circle>
+			</svg>
+ 
+
+
+ 	<script>
+ 			var circle = d3.selectAll("circle");
+ 			circle.style("fill", "steelblue");
+ 			circle.attr("r",30);
+
+       circle.attr("cx", function() {return Math.random() * 520;});
+
+       var fulldata = [
+            { 'year': 2012, 'sales': 500 },
+            { 'year': 2010, 'sales': 10 },
+            { 'year': 2011, 'sales': 140 },
+            { 'year': 2013, 'sales': 111 },
+            { 'year': 2014, 'sales': 20 },
+        ];
+			
+</script>	
+</div>
+
+</body>
+</html>

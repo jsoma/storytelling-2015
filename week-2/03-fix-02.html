@@ -1,0 +1,45 @@
+
+!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+		<svg width="400" height="400">
+			<rect x="50" y="10" width="15" height="15" style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" />
+			<rect x="50" y="40" width="15" height="15" style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" />
+			<rect x="50" y="70" width="15" height="15"  style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" />
+			<rect x="50" y="130" width="15" height="15"style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" />
+			<rect x="50" y="100" width="15" height="15" style="fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9" />
+		</svg>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+		
+		<script>
+		var rect = d3.selectAll("rect");
+			console.log(rect);
+			rect.style('fill', 'purple')
+
+			var datapoints = [10, 140, 78, 111, 20];
+
+		 	rect.data(datapoints);
+		 	circles.attr('r', function(d) {
+		 		console.log(d);
+				return 40;
+				return Math.sqrt(d);	
+				});
+			circles.attr('r', 0)
+				.transition()
+				.duration(2000)
+				.style('fill', 'yellow')
+				.attr('r', function(d) {
+					return Math.sqrt(d * 2);
+				}); 
+		</script>
+
+		
+	</body>
+	<body>
+		<img src="dont.jpg" alt="View" style="width:304px;height:228px">
+	</body>
+</html>
+
+ 

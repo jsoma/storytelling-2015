@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- This is content that is kind of just for the browser to know -->
+		<title>This shows up in the tab</title>
+		<style>
+			h1, h2, h3, h4 {
+				font-weight: normal;
+			}
+
+			/*means, only the strongs inside of h1s */
+			h1 strong {
+				/*look up hex colors*/
+				color: #FF0000;
+			}
+
+			/*period means we're looking for a class*/
+			.callout {
+				font-size: 20px;
+			}
+
+			.boring {
+				color: yellow;
+			}
+
+			/* hashes say match an id */
+			#important {
+				text-decoration: underline;
+			}
+		</style>
+
+		<script>
+		
+		// The worst way to share info
+		// alert("hello world");
+
+		console.log("hello world again");
+
+		console.log(3 + 4);
+
+		console.log(3 - 1);
+		console.log("Hello" + 3);
+
+		var name = "Soma";
+		console.log("Hello " + name);
+
+		if(4 < 5) {
+			console.log("The world makes sense");
+		} else {
+			console.log("Something is wrong");
+		}
+
+		function add(a, b) {
+			var addition_result = a + b;
+			return addition_result;
+		}
+
+		var result = add(2, 3);
+		console.log(result);
+
+		/* learnxinyminutes.com */
+		</script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+
+		<script>
+		$(document).ready( function() {
+			$("h1");
+			$("p");
+			$(".callout");
+			$("p").css('background','red');
+			$("p").css('color','green');
+
+			/* If you start chaining, hit
+				enter before the next period */
+			$("p").css('background','red')
+					.css('color','green')
+					.css('font-style','italic');
+
+			$("h1").click( function() {
+				alert('hello world??');
+			});
+		});
+		</script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+	</head>
+	<body>
+		<svg width="720" height="120">
+			<circle r="10" cx="10" cy="50"></circle>
+			<circle r="10" cx="50" cy="50"></circle>
+			<circle r="10" cx="100" cy="50"></circle>
+		</svg>
+
+
+		<script>
+			var circles = d3.selectAll("circle");
+			console.log(circles);
+			circles.style('fill', 'purple');
+
+			var datapoints = [40, 60, 120];
+
+			circles.data(datapoints);
+			// loop through each circle/datapoint
+			// to set the radius individually
+			circles.attr('r', function(d) {
+				console.log(d);
+				// return 40;
+				// d is the data point
+				return Math.sqrt(d);	
+			});
+
+			/* 
+				Look up: 
+				'easing functions', .ease("linear")
+			*/
+			circles.attr('r', 0)
+					.transition()
+					.duration(2000)
+					.style('fill', 'yellow')
+					.attr('r', function(d) {
+						return Math.sqrt(d * 2);
+					});
+
+
+		</script>
+
+
+
+		<!-- This is content that the user will see -->
+		<h1>This the <strong>title</strong> of the page</h1>
+		<h2>this is a little <em>smaller</em></h2>
+		<h3 id="important">This is a little smaller yet</h3>
+		<h4 class="boring">Even smaller</h4>
+		<h6>This is the smallest</h6>
+		<p>This <strong>is a</strong> boring tag</p>
+		<p class="callout">This is <em>another</em> one</p>
+		<p>And another one</p>
+
+		<!-- http://jonathansoma.com/columbia/intro.html -->
+
+	</body>
+</html>
