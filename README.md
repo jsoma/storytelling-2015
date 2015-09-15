@@ -1,8 +1,10 @@
-#<a id='top'></a> – Storytelling with Data (2015)
+#<a id='top'></a> Storytelling with Data (2015)
 
 Instructor: Jonathan Soma
 
 Location: 607B Pulitzer
+
+Schedule: Tuesday/Thursday, 1:10-2:25pm
 
 ---
 
@@ -13,6 +15,8 @@ Location: 607B Pulitzer
 [Sublime Text 2](http://www.sublimetext.com/2) should be your text editor.
 
 You'll want to install the [Track URL](https://github.com/jsoma/track_url) plugin for Sublime Text to follow along with my code in class. *Make sure you're using Sublime Text 2*.
+
+[Google Chrome](http://www.google.com/chrome/) should be your web browser so you'll be able to follow along with its Developer Tools.
 
 ---
 
@@ -25,17 +29,13 @@ You'll want to install the [Track URL](https://github.com/jsoma/track_url) plugi
 
 Beginning discussion of what makes a good visualization, and jumping into HTML, CSS and D3.
 
-**Class 1 content:**
-
-**Class 2 content:**
+[01-02/](Week 1 notes)
 
 ### Week 2
 
 Continued discussion of D3.
 
-**Class 1 content:**
-
-**Class 1 content:**
+[03-04/](Week 2 notes)
 
 ---
 
