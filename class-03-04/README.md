@@ -55,3 +55,5 @@ Pick **six states** in the USA, and using [http://water.usgs.gov/edu/wetstates.h
 3. Manually type out an `<svg>`, but don't put any `<rect>` elements inside. Use a class to grab it.
 4. Visualize the total square miles of the state in a **vertical bar graph**.
 5. In the second graph, color any states with a square mileage over 50,000 a different color.
+
+Submit to https://neocities.org, upload your files and announce both URLs in #storytelling in Slack. Due Thursday by 9am.
