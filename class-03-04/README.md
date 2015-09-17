@@ -74,11 +74,28 @@ You can download the template for this class in [this zip file](https://github.c
 
 ## Review
 
-
-## Homework
-
-
-## Resources
+You can find the work we did during class at [http://jonathansoma.com/columbia/04-classwork-01.html](http://jonathansoma.com/columbia/04-classwork-01.html).
 
 * [Using scales](http://jonathansoma.com/tutorials/d3/using-scales/)
 * [Using axes](http://jonathansoma.com/tutorials/d3/using-axes/), which also has a lot of links down at the bottom
+
+## Homework
+
+Select at least 10 states from [http://wallethub.com/edu/states-most-least-dependent-on-the-federal-government/2700/](http://wallethub.com/edu/states-most-least-dependent-on-the-federal-government/2700/), and create a list of dictionaries that includes all five of the non-rank categories, ie.
+
+    var states = [ 
+      { 'name': 'Arkansas', 'return': 0.62, 'fed_funding_pct': 33.07, 'fed_empl': 6.81, 'civ_empl': 3.59 }
+    ];
+
+Also include a key called `affiliation`, marking them as either `Democrat`, `Republican` or `Swing`. You can use [this](http://www.gallup.com/poll/160175/blue-states-outnumber-red-states.aspx) as your source for that data.
+
+Create three charts for Tuesday. Use our entire bag of tools - `.enter().append()`, scales, axes, and setting svg `width` and `height` using variables.
+
+1. A horizontal bar chart of `return`, with Democrat-leaning states as blue, Republican-learning states as red, and swing states as some nice shade of purple. Bar length is the return on investment, and include an axis on the bottom. Label should be state name.
+2. A bar chart of `fed_funding_pct`, with the percent number just beyond the tip of the bar (the "index labels" [on this image](http://canvasjs.com/wp-content/uploads/2013/02/html5_chart_label.jpg). Color the bar based on a scale. Include an axis.
+3. A scatterplot (aka circles)! Make x be `fed_funding_pct`, the y be `fed_empl`, and the radius of the circle reflect `return`. Include a state label somewhere near the circle (exact position is up to you).
+4. Make a copy of the scatterplot and add in an X axis and a Y axis.
+
+> **NOTE:** If you haven't had me before or haven't heard me say it in a while, don't wory if you can't complete all of the homework. Sometimes it's aspirational!
+
+You can turn them in all on the same page or across multiple pages. Submit your neocities.org URLs in #storytelling by 11:59pm on Monday.
