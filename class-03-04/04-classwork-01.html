@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Class 3 classwork template 01</title>
+  </head>
+  <body>
+
+    <svg class="bar-chart" height="200" width="400">
+    </svg>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    
+    <script>
+      var data = [1, 2, 3, 4, 5, 6];
+    
+      var svg = d3.select('.bar-chart');
+    
+      svg.selectAll('rect')
+          .data(data)
+          .enter()
+          .append('rect')
+          .attr('x', 0)
+          .attr('y', function(d, i) {
+            return i * 20; // space them out
+          })
+          .attr('height', 10)
+          .attr('width', function(d) {
+            return d * 30;
+          });
+    
+    </script>
+  </body>
+</html>

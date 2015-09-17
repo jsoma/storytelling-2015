@@ -1,4 +1,8 @@
-# Class 3
+[Class 3](#class3) | [Class 4](#class4)
+
+<a id='class3'></a>
+
+# Class 3: `.select`, `.enter` and `.append`
 
 Class contents are in [the 03-compiled.zip file](https://github.com/jsoma/storytelling-2015/raw/master/class-03-04/03-compiled.zip)
 
@@ -10,7 +14,6 @@ Our tracking URLS will be
 * `http://jonathansoma.com/columbia/03-classwork.html`
 
 <a id="review"></a>
-
 
 ### Review
 
@@ -57,3 +60,25 @@ Pick **six states** in the USA, and using [http://water.usgs.gov/edu/wetstates.h
 5. In the second graph, color any states with a square mileage over 50,000 a different color.
 
 Submit to https://neocities.org, upload your files and announce both URLs in #storytelling in Slack. Due Thursday by 9am.
+
+<a id='class4'></a>
+
+# Class 4: Scales and axes
+
+Tracking URL will be
+
+* http://jonathansoma.com/columbia/04-classwork-01.html
+* http://jonathansoma.com/columbia/04-classwork-02.html
+
+You can download the template for this class in [this zip file](https://github.com/jsoma/storytelling-2015/raw/master/class-03-04/04-compiled.zip).
+
+## Review
+
+
+## Homework
+
+
+## Resources
+
+* [Using scales](http://jonathansoma.com/tutorials/d3/using-scales/)
+* [Using axes](http://jonathansoma.com/tutorials/d3/using-axes/), which also has a lot of links down at the bottom
