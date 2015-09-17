@@ -1,0 +1,70 @@
+http://jonathansoma.com/columbia/03-classwork.html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Class 3 classwork template</title>
+  </head>
+  <body>
+    <svg class="gdp-chart" height="400" width="400">
+      <rect x="0" y="10" height="20" width="100"></rect>
+      <rect x="0" y="60" height="20" width="100"></rect>
+      <rect x="0" y="110" height="20" width="100"></rect>
+      <rect x="0" y="160" height="20" width="100"></rect>
+    </svg>
+
+    <svg height="400" width="400">
+      <circle r="3" cy="40" cx="60"></circle>
+      <circle r="3" cy="40" cx="120"></circle>
+      <circle r="3" cy="40" cx="180"></circle>
+      <circle r="3" cy="40" cx="240"></circle>
+    </svg>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    
+    <script>
+      var small_country_data = [
+        { 'name': 'France', 'GDP': 2.850, 'population': 0.066 },
+        { 'name': 'Indonesia', 'GDP':2.840, 'population': 0.255 },
+        { 'name': 'Russia', 'GDP': 1.860, 'population': 0.144 },
+        { 'name': 'Japan', 'GDP': 4.612, 'population': 0.127 },
+        { 'name': 'USA', 'GDP': 18.3, 'population': 0.390 }
+      ];
+
+      // d3, grab JUST the population chart svg
+      var pop_chart = d3.select("body")
+                        .append("svg")
+                        .attr('class', 'pop-chart')
+                        .attr('height', 400)
+                        .attr('width', 400);
+
+
+      // d3, grab the rects inside of the population chart
+      var pop_rectangles = pop_chart.selectAll("rect");
+
+      var rectangles = pop_rectangles.data(small_country_data);
+      // Looks like it has five, but it has four
+      //console.log(rectangles);
+
+      //console.log(rectangles.enter());
+      var new_rectangles = rectangles.enter()
+                                      .append("rect");
+      
+      new_rectangles.attr('width', function(d) {
+                          return d['population'] * 1000
+                        })
+                        .attr('y', function(d, i) {
+                          return i * 40 + 40;
+                        })
+                        .attr('x', 0)
+                        .attr('height', 10);
+
+        var gdp_chart = d3.select(".gdp-chart");
+        var gdp_rectangles = d3.selectAll("rect");
+        gdp_rectangles.data(small_country_data)
+                        .attr('width', function(d) {
+                          return d['GDP'] * 60;
+                        });
+
+    </script>
+  </body>
+</html>
