@@ -26,7 +26,7 @@ I also have an [(incomplete) tutorial](http://jonathansoma.com/tutorials/d3/usin
 **HTML**:
 
 ```html
-`<svg></svg>`
+<svg></svg>
 ```
 
 **JavaScript**:
