@@ -44,7 +44,7 @@ Then you go through the whole `.attr` and `.style` business.
 
 <a id="homework-3"></a>
 
-### Homework
+### Class 3 Homework
 
 Pick **six states** in the USA, and using [http://water.usgs.gov/edu/wetstates.html](http://water.usgs.gov/edu/wetstates.html), make a **list of dictionaries** that includes:
   
@@ -79,9 +79,11 @@ You can find the work we did during class at [http://jonathansoma.com/columbia/0
 * [Using scales](http://jonathansoma.com/tutorials/d3/using-scales/)
 * [Using axes](http://jonathansoma.com/tutorials/d3/using-axes/), which also has a lot of links down at the bottom
 
-## Homework
+<a id="homework4"></a>
 
-Select at least 10 states from [http://wallethub.com/edu/states-most-least-dependent-on-the-federal-government/2700/](http://wallethub.com/edu/states-most-least-dependent-on-the-federal-government/2700/), and create a list of dictionaries that includes all five of the non-rank categories, ie.
+### Class 4 Homework
+
+Select at least **10 states** from [http://wallethub.com/edu/states-most-least-dependent-on-the-federal-government/2700/](http://wallethub.com/edu/states-most-least-dependent-on-the-federal-government/2700/), and create a list of dictionaries that includes all five of the non-rank categories, ie.
 
     var states = [ 
       { 'name': 'Arkansas', 'return': 0.62, 'fed_funding_pct': 33.07, 'fed_empl': 6.81, 'civ_empl': 3.59 }
