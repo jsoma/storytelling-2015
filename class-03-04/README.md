@@ -91,12 +91,12 @@ Select at least **10 states** from [http://wallethub.com/edu/states-most-least-d
 
 Also include a key called `affiliation`, marking them as either `Democrat`, `Republican` or `Swing`. You can use [this](http://www.gallup.com/poll/160175/blue-states-outnumber-red-states.aspx) as your source for that data.
 
-Create three charts for Tuesday. Use our entire bag of tools - `.enter().append()`, scales, axes, and setting svg `width` and `height` using variables.
+**Create three charts for Tuesday**, using our *entire bag of tools* - `.enter().append()`, scales, axes, setting svg `width` and `height` using variables, etc.
 
-1. A horizontal bar chart of `return`, with Democrat-leaning states as blue, Republican-learning states as red, and swing states as some nice shade of purple. Bar length is the return on investment, and include an axis on the bottom. Label should be state name.
-2. A bar chart of `fed_funding_pct`, with the percent number just beyond the tip of the bar (the "index labels" [on this image](http://canvasjs.com/wp-content/uploads/2013/02/html5_chart_label.jpg). Color the bar based on a scale. Include an axis.
-3. A scatterplot (aka circles)! Make x be `fed_funding_pct`, the y be `fed_empl`, and the radius of the circle reflect `return`. Include a state label somewhere near the circle (exact position is up to you).
-4. Make a copy of the scatterplot and add in an X axis and a Y axis.
+1. **A horizontal bar chart** of `return`, with Democrat-leaning states as blue, Republican-learning states as red, and swing states as some nice shade of purple. Bar length is the return on investment, and include an axis on the bottom. Label should be state name.
+2. **A bar chart** of `fed_funding_pct`, with the percent number just beyond the tip of the bar (the "index labels" [on this image](http://canvasjs.com/wp-content/uploads/2013/02/html5_chart_label.jpg). Color the bar based on a scale. Include an axis.
+3. **A scatterplot** (aka circles)! Make x be `fed_funding_pct`, the y be `fed_empl`, and the radius of the circle reflect `return`. Include a label that says the state's name somewhere near the circle (exact position is up to you).
+4. Make a copy of the scatterplot and **add in an X axis and a Y axis**.
 
 > **NOTE:** If you haven't had me before or haven't heard me say it in a while, don't wory if you can't complete all of the homework. Sometimes it's aspirational!
 
