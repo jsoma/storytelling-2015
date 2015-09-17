@@ -65,10 +65,10 @@ Submit to https://neocities.org, upload your files and announce both URLs in #st
 
 # Class 4: Scales and axes
 
-Tracking URL will be
+Tracking URLs will be
 
-* http://jonathansoma.com/columbia/04-classwork-01.html
-* http://jonathansoma.com/columbia/04-classwork-02.html
+* `http://jonathansoma.com/columbia/04-classwork-01.html`
+* `http://jonathansoma.com/columbia/04-classwork-02.html`
 
 You can download the template for this class in [this zip file](https://github.com/jsoma/storytelling-2015/raw/master/class-03-04/04-compiled.zip).
 
