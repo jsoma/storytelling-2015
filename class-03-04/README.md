@@ -78,6 +78,7 @@ You can find the work we did during class at [http://jonathansoma.com/columbia/0
 
 * [Using scales](http://jonathansoma.com/tutorials/d3/using-scales/)
 * [Using axes](http://jonathansoma.com/tutorials/d3/using-axes/), which also has a lot of links down at the bottom
+* [Positioning tricks](http://jonathansoma.com/tutorials/d3/positioning-tricks/) (which is I guess from homework but still!)
 
 <a id="homework4"></a>
 
