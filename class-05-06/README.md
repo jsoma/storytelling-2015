@@ -30,6 +30,7 @@ Only requirements are:
 * Use `d3.scale` on both
 * Make an infobox for *at least* one of them
 * Use click and/or hover events to provide some sort of interactivity
+* *Try* to make it look at least a *little* nice
 
 Submit your neocities.org URLs in #storytelling by 9:00am on Thursday.
 
