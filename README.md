@@ -41,6 +41,16 @@ Continued discussion of D3.
 
 <a id='outside-resources'></a>
 
+### Week 3
+
+Continued discussion of D3.
+
+[Week 3 notes](class-04-05)
+
+---
+
+<a id='outside-resources'></a>
+
 ## Outside Resources
 
 
