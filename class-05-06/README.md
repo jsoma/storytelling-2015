@@ -27,7 +27,7 @@ Make two charts of any type, using data of your choosing (at least 10 data point
 
 Only requirements are:
 
-* Use `d3.scale.linear() on both
+* Use `d3.scale` on both
 * Make an infobox for *at least* one of them
 * Use click and/or hover events to provide some sort of interactivity
 
