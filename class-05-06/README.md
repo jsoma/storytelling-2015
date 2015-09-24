@@ -36,6 +36,11 @@ Submit your neocities.org URLs in #storytelling by 9:00am on Thursday.
 
 <a id='class6'></a>
 
-# Class 6: External Data Sources and Review
+# Class 6: Doing margins right, external data dources and (maybe!) sorting and filtering
 
+Class contents are in [the 06-compiled.zip file](https://github.com/jsoma/storytelling-2015/raw/master/class-05-06/06-compiled.zip)
 
+Our tracking URLS will be 
+
+* `http://jonathansoma.com/columbia/06-classwork-margins.html`
+* `http://jonathansoma.com/columbia/06-classwork-external.html`

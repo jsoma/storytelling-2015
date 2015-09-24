@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js'></script>  
+  <style>
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: black;
+        shape-rendering: crispEdges;
+    }
+
+    .axis text {
+        font-family: sans-serif;
+        font-size: 11px;
+    }
+  </style>
+  <div id="chart"></div>
+  <script>
+  var datapoints = [
+    { 'title': 'Pride and Prejudice', 'author': 'Jane Austen', 'words': 120000, 'published': 1813 },
+    { 'title': 'Cryptonomicon', 'author': 'Neal Stephenson', 'words': 415000, 'published': 1999 },
+    { 'title': 'The Great Gatsby', 'author': 'F. Scott Fitzgerald', 'words': 47094, 'published': 1925 },
+    { 'title': 'Song of Solomon', 'author': 'Toni Morrison', 'words': 92400, 'published': 1977 },
+    { 'title': 'White Teeth', 'author': 'Zadie Smith', 'words': 169000, 'published': 2000 }
+  ];
+
+  var height = 300, width = 600;
+
+  var svg = d3.select("#chart").append("svg").attr('height', height).attr('width', width);
+
+  var x_scale = d3.scale.linear().domain([0, 500000]).range([0, width]);
+
+  // and ORDINAL scale is for categorical data
+  var titles = datapoints.map( function(d) { return d['title'] });
+
+  // range bands to the rescue for non-numeric domains
+  // https://github.com/mbostock/d3/wiki/Ordinal-Scales#ordinal_rangeBands
+  // http://jaketrent.com/post/use-d3-rangebands/
+  var y_scale = d3.scale.ordinal().domain(titles).rangeBands([height, 0], 0.5, 0.2);
+
+  var xAxis = d3.svg.axis()
+    .scale(x_scale)
+    .orient("bottom");
+
+  var yAxis = d3.svg.axis()
+    .scale(y_scale)
+    .orient("left");
+
+  svg.append('g').attr('class','axis').call(xAxis).attr("transform", "translate(0," + height + ")");
+  svg.append('g').attr('class','axis').call(yAxis).attr("transform", "translate(0,0)");;
+
+  svg.selectAll('rect')
+      .data(datapoints)
+      .enter()
+      .append('rect')
+      .attr('y', function(d) {
+        return y_scale(d['title']);
+      })
+      .attr('x', 0)
+      .attr('height', y_scale.rangeBand())
+      .attr('width', function(d) {
+        return x_scale(d['words']);
+      })
+
+  </script>
+</body>
+</html>
