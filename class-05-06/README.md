@@ -45,6 +45,8 @@ Our tracking URLS will be
 * `http://jonathansoma.com/columbia/06-classwork-margins.html`
 * `http://jonathansoma.com/columbia/06-classwork-external.html`
 
+<a name='class6-review'></a>
+
 ### Review
 
 Tutorials you might might find helpful are:
@@ -117,15 +119,19 @@ scale.rangeBand()
 
 If it helps, think of it as the same as if we had a linear scale that went from 0-3, with cats=0, dogs=1, birds=2, turtles=3.
 
+<a name='class6-homework'></a>
+
 ### Class 6 Homework
 
-Make three charts using data of your choice. They can even be all of the same data, and/or you can re-use data we've had previously. Feel free to share data sets in Slack.
+Make **three charts** using data of your choice. They can even be all of the same data, and/or you can re-use data we've had previously. Feel free to share data sets in Slack.
 
 1. **Chart One:** A chart with axes that uses a `g` with margins to fit in the svg. If you use circles, grow the `r` to the right size over 500 milliseconds upon loading of the page. If using rectangles, grow the `width` over the same timeframe instead. Make color mean something - either make your data fall into categories or use a color scale.
 2. **Chart Two:** A scatterplot with two axes that uses a `g` with margins to fit in the svg. As you hover over a data point, the point must light up and an infobox must be appear and be filled in. Create an update function where, if I run it with shuffled data(`d3.shuffle(datapoints)`) will change the `x` and `y` of the circles, causing them to swoop around the page.
 3. **Chart Three:** A vertical bar chart with axes that uses a `g` with margins to fit in the svg. This chart must use an `d3.scale.ordinal()` scale for its x-axis, as well as have an `update(data)` function as used today in class. Add a piece of text (`<p>` or `<button>` or whatever you want) that, when you click it, runs `update(d3.shufle(datapoints));`
 4. If you're feeling triple-exceptional, add a note at the top of each vertical bar noting the amount the bar represents. As the bars change, have this number change with it.
 
-Add a one- or two-sentence caption to each chart explaining your 'findings,' or what the chart displays
+Add a one- or two-sentence caption to each chart explaining your "findings," or what the chart displays.
 
-If you're doing this all on one page, you'll want to call your data sets and update functions different things, or else they'll cause problems.
+> **NOTE:** If you're doing this all on one page, you'll want to call your data sets variables and update functions different things, or else they'll cause problems.
+
+Turn in by 9am Tuesday by posting in this BRAND NEW `#storytelling-hw` channel on Slack.
