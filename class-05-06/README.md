@@ -82,7 +82,55 @@ function update(data) {
   // update their width or r or color or whatever
   // throw in transition() if you want
 }
-var xscale = 
+```
+
+<a id="different-data"></a>
+
+But maybe instead of sorting, you'd like to display a different kind of data?
+
+```javascript
+// create the svg to draw in
+// draw add axes
+// append axes
+
+// make your function take THREE parameters:
+//    the data, the x value and the y value
+function update(data, x_attribute, y_attribute) {
+  // update x scale's domain
+  // since we're using variables, we have two options:
+
+  // METHOD ONE: you'd like to set the domain yourself based on the attr
+  if(x_attribute == 'height') { 
+    x_scale.domain([0, 500])
+  } else { 
+    x_scale.domain([0,10000] 
+  }
+  // METHOD TWO: you'd like to make it be between 0 and max
+  var x_max = d3.max( data, function(d) { return d[x_attribute] });
+  x_scale.domain([0, x_max]);
+
+  // select x axis using class, use .call to update x axis
+  
+  // do the same thing for y
+  
+  // select all of the shapes and bind the data
+  // use a key function if you want, .data(datapoints, function() { return d['whatever' ] })
+  // .enter and .append for the new ones + set default values
+  
+  // update their width or r or color or whatever
+  // BUT!!! use d[variablename] instead of d['height']
+  // throw in transition() if you want
+  circles.attr('cx', function(d) { 
+            x_scale(d[x_attribute]); 
+          })
+          .attr('cy', function(d) {
+            y_scale(d[y_attribute]);
+          })
+
+}
+
+// when you call it, use all three
+update(datapoints, 'height', 'weight');
 ```
 
 [more](https://medium.com/@c_behrens/enter-update-exit-6cafc6014c36), [more](http://bl.ocks.org/mbostock/3808218)
@@ -123,15 +171,19 @@ If it helps, think of it as the same as if we had a linear scale that went from 
 
 ### Class 6 Homework
 
-Make **three charts** using data of your choice. They can even be all of the same data, and/or you can re-use data we've had previously. Feel free to share data sets in Slack.
+You're going to make **two charts** using the data contained in [homework-data.xlsx](https://github.com/jsoma/storytelling-2015/raw/master/class-05-06/homework-data.xlsx). You can plot any dimensions you wish, just use that data. Feel free to add other columns if you'd like.
 
-1. **Chart One:** A chart with axes that uses a `g` with margins to fit in the svg. If you use circles, grow the `r` to the right size over 500 milliseconds upon loading of the page. If using rectangles, grow the `width` over the same timeframe instead. Make color mean something - either make your data fall into categories or use a color scale.
-2. **Chart Two:** A scatterplot with two axes that uses a `g` with margins to fit in the svg. As you hover over a data point, the point must light up and an infobox must be appear and be filled in. Create an update function where, if I run it with shuffled data(`d3.shuffle(datapoints)`) will change the `x` and `y` of the circles, causing them to swoop around the page.
-3. **Chart Three:** A vertical bar chart with axes that uses a `g` with margins to fit in the svg. This chart must use an `d3.scale.ordinal()` scale for its x-axis, as well as have an `update(data)` function as used today in class. Add a piece of text (`<p>` or `<button>` or whatever you want) that, when you click it, runs `update(d3.shufle(datapoints));`
-4. If you're feeling triple-exceptional, add a note at the top of each vertical bar noting the amount the bar represents. As the bars change, have this number change with it.
+**PLEASE READ THIS WHOLE SECTION BEFORE YOU BEGIN**
+
+> **NOTE:** The homework was different yesterday, I changed it to simplify some things and complicate other things. Also be aware that there is a large [review section up above](#class6-review).
+
+1. **Convert the Excel file to JSON** using the wonderful [Mr. Data Converter](https://shancarter.github.io/mr-data-converter/).
+2. **Chart One:** A vertical bar chart with axes that uses a `g` with margins to fit in the svg. This chart must use an `d3.scale.ordinal()` scale for its x-axis, as well as have an `update(data)` function as used today in class. Add a piece of text (`<p>` or `<button>` or whatever you want) that, when you click it, runs `update(d3.shufle(datapoints));`
+3. If you're feeling exceptional, add a note at the top of each vertical bar noting the amount the bar represents. As the bars change, have this number change with it.
+4. **Chart Two:** A scatterplot with two axes that uses a `g` with margins to fit in the svg. As you hover over a data point, the point must light up and an infobox must be appear and be filled in. Create two pieces of text on the page (or google `<button>`) - when clicked, they should change the attributes graphed (e.g. from *population between 0-14 vs death rate* to *GDP to birth rate*). ([See above](#different-data) for tips on changing attributes)
 
 Add a one- or two-sentence caption to each chart explaining your "findings," or what the chart displays.
 
-> **NOTE:** If you're doing this all on one page, you'll want to call your data sets variables and update functions different things, or else they'll cause problems.
+> **NOTE:** If you're doing this all on one page, you'll want to call your `update` functions different things, or else they'll conflict with one another.
 
 Turn in by 9am Tuesday by posting in this BRAND NEW `#storytelling-hw` channel on Slack.
