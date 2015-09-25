@@ -36,7 +36,7 @@ Submit your neocities.org URLs in #storytelling by 9:00am on Thursday.
 
 <a id='class6'></a>
 
-# Class 6: Doing margins right, external data dources and (maybe!) sorting and filtering
+# Class 6: Doing margins correctly and the general update pattern
 
 Class contents are in [the 06-compiled.zip file](https://github.com/jsoma/storytelling-2015/raw/master/class-05-06/06-compiled.zip)
 
@@ -55,6 +55,7 @@ Tutorials you might might find helpful are:
 * [Sorting](http://jonathansoma.com/tutorials/d3/sorting/)
 * [Scales](http://jonathansoma.com/tutorials/d3/using-scales/) (scroll down to 'ordinal scales', which I'll be posting by Friday PM)
 * [Ordinal Scales 1](https://github.com/mbostock/d3/wiki/Ordinal-Scales), [Ordinal Scales 2](http://jaketrent.com/post/use-d3-rangebands/)
+* [General Update Pattern](http://bl.ocks.org/mbostock/3808218)
 
 You can also use Google to find some!
 
@@ -101,9 +102,9 @@ function update(data, x_attribute, y_attribute) {
 
   // METHOD ONE: you'd like to set the domain yourself based on the attr
   if(x_attribute == 'height') { 
-    x_scale.domain([0, 500])
+    x_scale.domain([0, 500]);
   } else { 
-    x_scale.domain([0,10000] 
+    x_scale.domain([0,10000]);
   }
   // METHOD TWO: you'd like to make it be between 0 and max
   var x_max = d3.max( data, function(d) { return d[x_attribute] });
