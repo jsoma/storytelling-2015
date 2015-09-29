@@ -11,6 +11,11 @@ Our tracking URLS will be
 * `http://jonathansoma.com/columbia/07-classwork-filtering.html`
 * `http://jonathansoma.com/columbia/07-classwork-sorting.html`
 
+Our magic phrases will be:
+
+* How much do we need to know? Do we need numbers?
+* Compared to *what?*
+
 <a id="review"></a>
 
 ### Review
@@ -48,3 +53,11 @@ d3.selectAll('circle')
   })
 ````
 **Buttons**
+
+    <button id="my-button">This is a button</button>
+
+### Homework
+
+1) Read the first 4 chapters of Edward Tufte's **The Visual Display of Quantitative Information**.
+2) ????
+3) Make a graphic *to be critiqued in class.* It can be D3, it can be drawn on a piece of paper, it can be made in [Tableau](http://jordanrosenblum.neocities.org/HW6/hw6.html), it can come from Excel, it can be from [DataWrapper](https://datawrapper.de): just *some sort of data visualization*.

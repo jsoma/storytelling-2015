@@ -1,4 +1,4 @@
-Country,Population (millions),0-14(%),15-64 (%),>65 (%),Growth Rate (%),Birth rate (per 1000),Death Rate (per 1000),Migration Rate (%),Infant mortality Rate (per 1000),Life Expectancy (LE) (years),LE Men,LE women,Fertility Rate Women,GDP per capita
+Country,Population (millions),0-14 (%),15-64 (%),>65 (%),Growth Rate (%),Birth rate (per 1000),Death Rate (per 1000),Migration Rate (%),Infant mortality Rate (per 1000),Life Expectancy (LE) (years),LE Men,LE women,Fertility Rate Women,GDP per capita
 Algeria,32.9,28.1,67.1,4.8,1.22,17.4,4.61,-0.35,29.87,73.26,71.68,74.92,1.89,7700
 Bangladesh,147.4,32.9,63.6,3.5,2.09,29.8,8.27,-0.68,60.83,62.46,62.47,62.45,3.11,2200
 Botswana,1.6,38.3,57.9,3.8,-0.04,23.1,29.5,6.07,53.7,33.74,33.9,33.56,2.79,11400
