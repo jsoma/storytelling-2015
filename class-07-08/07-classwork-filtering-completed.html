@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js'></script>  
+  <style>
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: black;
+        shape-rendering: crispEdges;
+    }
+
+    .axis text, .labels text {
+        font-family: sans-serif;
+        font-size: 11px;
+    }
+  </style>
+  <div id="chart"></div>
+  <script>
+
+  var margin = {
+    'left': 50,
+    'right': 50,
+    'top': 20,
+    'bottom': 20
+  };
+
+  var svg_height = 300, svg_width = 800;
+
+  var height = svg_height - margin['top'] - margin['bottom'],
+      width = svg_width - margin['left'] - margin['right'];
+      
+  var svg = d3.select("#chart").append("svg").attr('height', svg_height).attr('width', svg_width);
+
+  var chart = svg.append("g")
+                  .attr("transform", "translate(" + margin['left'] + "," + margin['top'] + ")");
+
+  // make a special g that our labels will go into
+  var label_holder = chart.append("g").attr('class', 'labels');
+                  
+  var x_scale = d3.scale.linear().range([0, width]);
+  var y_scale = d3.scale.linear().range([height, 0]);
+
+  var xAxis = d3.svg.axis()
+    .scale(x_scale)
+    .orient("bottom");
+
+  var yAxis = d3.svg.axis()
+    .scale(y_scale)
+    .orient("left");
+
+  chart.append('g').attr('class','x-axis axis').call(xAxis).attr("transform", "translate(0," + height + ")");
+  chart.append('g').attr('class','y-axis axis').call(yAxis).attr("transform", "translate(0,0)");;
+
+  function update(data, x_attribute, y_attribute) {
+    // reset the domain of the x scale
+    var x_max = d3.max( data, function(d) { return parseInt(d[x_attribute]) } );
+    x_scale.domain([0, x_max]);
+
+    // reset the domain of the y scale
+    var y_max = d3.max( data, function(d) { return parseInt(d[y_attribute]) } );
+
+    y_scale.domain([0, y_max]);
+
+    // actually grab the axes on the page and update them with
+    chart.select('.y-axis').transition().call(yAxis);
+    chart.select('.x-axis').transition().call(xAxis);
+
+    // actually grab the axes on the page and update them with
+    chart.select('.y-axis').transition().call(yAxis);
+    chart.select('.x-axis').transition().call(xAxis);
+
+    var points = chart.selectAll('circle')
+                      .data(data, function(d) {
+                        return d['Country'];
+                      });
+
+    points.enter()
+          .append('circle')
+          .attr('cx', 0)
+          .attr('cy', 0)
+          .attr('r', 3);
+
+    points.attr('cx', function(d) {
+      return x_scale(d[x_attribute]);
+    }).attr('cy', function(d) {
+      return y_scale(d[y_attribute]);
+    });
+
+    points.filter( function(d) {
+      return ['USA', 'India', 'China'].indexOf(d['Country']) != -1;
+    }).attr('fill','red');
+
+    // Add labels inside of label holder, otherwise
+    // selectAll with conflict with the labels in the
+    // axes
+    var labels = label_holder.selectAll('text')
+                              .data(data, function(d) {
+                                return d['Country'];
+                              });
+
+    labels.enter()
+          .append('text')
+          .attr('x', 0)
+          .attr('y', 0)
+          .attr('text-anchor', 'left');
+
+    // blank out the text,
+    // then display it for China, USA and India
+    labels.text('')
+          .filter( function(d) {
+            return ['USA', 'India', 'China'].indexOf(d['Country']) != -1;
+          }).attr('x', function(d) {
+            return x_scale(d[x_attribute]) + 5;
+          }).attr('y', function(d) {
+            return y_scale(d[y_attribute]) - 3;
+          }).text( function(d) {
+            return d['Country'];
+          });
+  }
+  
+  d3.csv("07-data.csv", function(error, data) {
+    console.log(data);
+    update(data, 'GDP per capita', 'Population (millions)');
+  })
+      
+  </script>
+</body>
+</html>

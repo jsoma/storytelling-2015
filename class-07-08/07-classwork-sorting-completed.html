@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js'></script>  
+  <style>
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: black;
+        shape-rendering: crispEdges;
+    }
+
+    .axis text {
+        font-family: sans-serif;
+        font-size: 11px;
+    }
+  </style>
+  <div id="chart"></div>
+  <button id="sort-asc">Sort ascending</button>
+  <button id="sort-desc">Sort descending</button>
+  <button id="sort-shuffle">Shuffle</button>
+  <script>
+  var datapoints = [
+    { 'title': 'Pride and Prejudice', 'author': 'Jane Austen', 'words': 120000, 'published': 1813 },
+    { 'title': 'Cryptonomicon', 'author': 'Neal Stephenson', 'words': 415000, 'published': 1999 },
+    { 'title': 'The Great Gatsby', 'author': 'F. Scott Fitzgerald', 'words': 47094, 'published': 1925 },
+    { 'title': 'Song of Solomon', 'author': 'Toni Morrison', 'words': 92400, 'published': 1977 },
+    { 'title': 'White Teeth', 'author': 'Zadie Smith', 'words': 169000, 'published': 2000 }
+  ];
+
+  // now it's an object (dictionary)
+  // and you use margin['left'] or margin.left
+  // and margin['right'] or margin.right
+  var margin = {
+    'left': 200,
+    'right': 50,
+    'top': 50,
+    'bottom': 75
+  };
+
+  // set the height and width of JUST the svg
+  var svg_height = 300, svg_width = 800;
+
+  // this is the height and width of the g inside of the svg
+  var height = svg_height - margin['top'] - margin['bottom'],
+      width = svg_width - margin['left'] - margin['right'];
+
+  var svg = d3.select("#chart").append("svg").attr('height', svg_height).attr('width', svg_width);
+
+  // the g element goes inside of the svg
+  var chart = svg.append("g")
+                .attr("transform", "translate(" + margin['left'] + "," + margin['top'] + ")");
+
+  var x_scale = d3.scale.linear().domain([0, 500000]).range([0, width]);
+
+  // and ORDINAL scale is for categorical data
+  // range bands to the rescue for non-numeric domains
+  // https://github.com/mbostock/d3/wiki/Ordinal-Scales#ordinal_rangeBands
+  // http://jaketrent.com/post/use-d3-rangebands/
+
+  var titles = datapoints.map( function(d) { return d['title'] });
+  var y_scale = d3.scale.ordinal().domain(titles).rangeBands([height, 0], 0.5, 0.2);
+
+  var xAxis = d3.svg.axis()
+    .scale(x_scale)
+    .orient("bottom");
+
+  var yAxis = d3.svg.axis()
+    .scale(y_scale)
+    .orient("left");
+
+  chart.append('g').attr('class','axis x-axis').call(xAxis).attr("transform", "translate(0," + height + ")");
+  chart.append('g').attr('class','axis y-axis').call(yAxis).attr("transform", "translate(0,0)");
+
+  // common d3 function names:
+  // render, update, ready
+  function update(data) {
+    var titles = data.map( function(d) { return d['title'] });
+    y_scale.domain(titles);
+    chart.select('.y-axis').transition().call(yAxis);
+
+    var rectangles = chart.selectAll('rect')
+                          .data(data);
+
+    // DEAL WITH THE NEW ONES
+    // first thing, let's create those new rectangles
+    rectangles.enter()
+              .append('rect')
+              .attr('x', 0)
+              .attr('width', 0)
+              // you can pretend we're just doing
+              // .attr('height', 20);
+              .attr('height', y_scale.rangeBand());
+
+    // DEAL WITH ALL OF THEM
+    // next thing, update all the rectangles to
+    // be the right width
+    // since we did .enter().append() already,
+    // rectangles now has all of the rects in it
+    rectangles.transition()
+              // .delay( function(d, i) {
+              //   return i * 250;
+              // })
+              .attr('width', function(d) {
+                return x_scale(d['words']);
+              })
+              .attr('y', function(d) {
+                return y_scale(d['title']);
+              });
+  }
+
+  update(datapoints);
+
+  // d3.shuffle(datapoints); update(datapoints);
+  
+  d3.select("#sort-asc").on('click', function() {
+    datapoints.sort(function(a, b) {
+      return a['words'] < b['words'];
+    });
+    update(datapoints);
+  });
+  d3.select("#sort-desc").on('click', function() {
+    datapoints.sort(function(a, b) {
+      return a['words'] > b['words'];
+    });
+    update(datapoints);
+  });
+  d3.select("#sort-shuffle").on('click', function() {
+    d3.shuffle(datapoints);
+    update(datapoints);
+  });
+  </script>
+</body>
+</html>
