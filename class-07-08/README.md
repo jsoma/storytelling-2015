@@ -58,6 +58,5 @@ d3.selectAll('circle')
 
 ### Homework
 
-1) Read the first 4 chapters of Edward Tufte's **The Visual Display of Quantitative Information**.
-2) ????
-3) Make a graphic *to be critiqued in class.* It can be D3, it can be drawn on a piece of paper, it can be made in [Tableau](http://jordanrosenblum.neocities.org/HW6/hw6.html), it can come from Excel, it can be from [DataWrapper](https://datawrapper.de): just *some sort of data visualization*.
+1. Read the first 4 chapters of Edward Tufte's **The Visual Display of Quantitative Information**.
+3. Make a graphic *to be critiqued in class.* It can be D3, it can be drawn on a piece of paper, it can be made in [Tableau](http://jordanrosenblum.neocities.org/HW6/hw6.html), it can come from Excel, it can be from [DataWrapper](https://datawrapper.de): just *some sort of data visualization*. You can use data we've worked with already, or anything else you'd like. Include a short caption.
