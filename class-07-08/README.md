@@ -62,6 +62,8 @@ d3.selectAll('circle')
 2. Make a graphic *to be critiqued in class.* It can be D3, it can be drawn on a piece of paper, it can be made in [Tableau](http://jordanrosenblum.neocities.org/HW6/hw6.html), it can come from Excel, it can be from [DataWrapper](https://datawrapper.de): just *some sort of data visualization*. You can use data we've worked with already, or anything else you'd like. Include a short caption.
 3. Turn in by 9am Thursday by posting to `#storytelling-hw` on Slack.
 
+<a id="class8"></a>
+
 # Class 8: Lines Galore
 
 Class contents are in [the 08-compiled.zip file](https://github.com/jsoma/storytelling-2015/raw/master/class-07-08/08-compiled.zip)
