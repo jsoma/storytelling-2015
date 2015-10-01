@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<!--
+ more about lines at 
+ http://www.w3schools.com/svg/svg_path.asp
+ and
+ https://www.dashingd3js.com/svg-paths-and-d3js
+-->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js'></script>  
+<style>
+  svg {
+    background: #e1e1e1;
+  }
+  .axis path,
+  .axis line {
+      fill: none;
+      stroke: black;
+      shape-rendering: crispEdges;
+  }
+
+  .axis text {
+      font-family: sans-serif;
+      font-size: 11px;
+  }
+</style>
+
+<div id="chart"></div>
+
+<script>
+var svg_width = 900;
+var svg_height = 600;
+var margin = 40;
+var height = svg_height - margin * 2;
+var width = svg_width - margin * 2;
+
+var datapoints = [
+  { 'product': 'Bagels', 'year': 2012, 'sales': 30 },
+  { 'product': 'Bagels', 'year': 2013, 'sales': 50 },
+  { 'product': 'Bagels', 'year': 2014, 'sales': 60 },
+  // { 'product': 'Coffee', 'year': 2012, 'sales': 100 },
+  // { 'product': 'Coffee', 'year': 2013, 'sales': 160 },
+  // { 'product': 'Coffee', 'year': 2014, 'sales': 170 },
+  // { 'product': 'Tea', 'year': 2012, 'sales': 80 },
+  // { 'product': 'Tea', 'year': 2013, 'sales': 75 },
+  // { 'product': 'Tea', 'year': 2014, 'sales': 50 },
+  // { 'product': 'Sandwiches', 'year': 2012, 'sales': 130 },
+  // { 'product': 'Sandwiches', 'year': 2013, 'sales': 155 },
+  // { 'product': 'Sandwiches', 'year': 2014, 'sales': 120 }
+];
+
+var svg = d3.select("body").append("svg")
+    .attr("width", svg_width)
+    .attr("height", svg_height);
+
+var xscale = d3.scale.linear().domain([2012,2014]).range([0,width]);
+var yscale = d3.scale.linear().domain([0,200]).range([height, 0]);
+
+var chart = svg.append('g').attr('transform', 'translate(' + margin + ',' + margin + ')');
+
+var yAxis = d3.svg.axis().scale(yscale).orient("left");
+var xAxis = d3.svg.axis().scale(xscale).orient("bottom").tickFormat(d3.format('d'));
+
+chart.append("g")
+    .attr("class", "y-axis axis")
+    .call(yAxis);
+
+chart.append("g")
+    .attr("class", "x-axis axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis);
+
+
+console.log("Look at the original data");
+console.log(datapoints);
+
+var color = d3.scale.category10();
+
+// This is what we use to build the line. It isn't the
+// actual line on the page, it's a function that tells 
+// d3 how to build the line - what to use for the x values
+// and what to use for the y values
+var line = d3.svg.line()
+    .x(function(d) { 
+      return xscale(d['year']); 
+    })
+    .y(function(d) { 
+      console.log(yscale(d['sales'])); 
+      return yscale(d['sales']); 
+    });
+
+// for example, look at the console
+console.log(line(datapoints))
+
+// We need to make this other g because OTHERWISE
+// if we do a selectAll("path") for any reason we'll
+// also get the axes - all of the ticks are path elements!
+var lines_area = chart.append('g');
+
+// this is a NEW THING.
+// there's only ONE line, even though it's based on MULTIPLE
+// data points. So instead of doing .data, we do .datum
+// and we say "use the line function to figure out the d"
+lines_area.append("path")
+          .datum(datapoints)
+          .style("fill", "none")
+          .attr("class", "line")
+          .style("stroke", "#ff0000")
+          .attr("d", line);
+
+// we could add circles if we wanted
+// because each individual data point is an individual circle
+// we used .selectAll
+var circles = lines_area.selectAll("circle")
+                        .data(datapoints)
+                        .enter()
+                        .append('circle')
+                        .attr('r', 3)
+                        .style('fill', '#ff0000')
+                        .attr("cx", function(d) { return xscale(d['year']) })
+                        .attr("cy", function(d) { return yscale(d['sales']) })
+</script>
+</body>
+</html>

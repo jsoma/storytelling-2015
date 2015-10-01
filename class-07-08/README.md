@@ -6,7 +6,7 @@
 
 Class contents are in [the 07-compiled.zip file](https://github.com/jsoma/storytelling-2015/raw/master/class-07-08/07-compiled.zip)
 
-Our tracking URLS will be 
+Our tracking URLs will be 
 
 * `http://jonathansoma.com/columbia/07-classwork-filtering.html`
 * `http://jonathansoma.com/columbia/07-classwork-sorting.html`
@@ -61,3 +61,21 @@ d3.selectAll('circle')
 1. Read the first 4 chapters of Edward Tufte's **The Visual Display of Quantitative Information**.
 2. Make a graphic *to be critiqued in class.* It can be D3, it can be drawn on a piece of paper, it can be made in [Tableau](http://jordanrosenblum.neocities.org/HW6/hw6.html), it can come from Excel, it can be from [DataWrapper](https://datawrapper.de): just *some sort of data visualization*. You can use data we've worked with already, or anything else you'd like. Include a short caption.
 3. Turn in by 9am Thursday by posting to `#storytelling-hw` on Slack.
+
+# Class 8: Lines Galore
+
+Class contents are in [the 08-compiled.zip file](https://github.com/jsoma/storytelling-2015/raw/master/class-07-08/08-compiled.zip)
+
+Our tracking URL will be 
+
+* `http://jonathansoma.com/columbia/08-classwork.html`
+
+### Review
+
+* http://www.w3schools.com/svg/svg_path.asp
+* https://www.dashingd3js.com/svg-paths-and-d3js
+* https://www.dashingd3js.com/d3js-scales (scroll down to `Color`)
+* http://bl.ocks.org/mbostock/3883245
+* http://bl.ocks.org/natemiller/20f9bd99d1795e3a0b1c
+
+Also be sure to check out [08-single-line-complete.html](08-single-line-complete.html) and [08-multiple-lines-complete.html](08-multiple-lines-complete.html)
