@@ -72,7 +72,7 @@ Our tracking URL will be
 
 * `http://jonathansoma.com/columbia/08-classwork.html`
 
-### Review
+## Review
 
 * http://www.w3schools.com/svg/svg_path.asp
 * https://www.dashingd3js.com/svg-paths-and-d3js
@@ -82,7 +82,7 @@ Our tracking URL will be
 
 Also be sure to check out [08-single-line-complete.html](08-single-line-complete.html) and [08-multiple-lines-complete.html](08-multiple-lines-complete.html) and [http://jonathansoma.com/columbia/08-classwork.html](http://jonathansoma.com/columbia/08-classwork.html).
 
-### Homework
+## Homework
 
 **PART ONE: BRAINS**
 
@@ -111,11 +111,11 @@ Use whatever data you want, although a good time series might be hard to find. I
 |B|1970|5|
 |B|1990|10|
 
-I put some Python code down below to show you how to convert your data if it uses a column for every year.
+**BE SURE TO READ ALL OF MY NOTES AND TIPS BELOW, THERE ARE MANY USEFUL INSTRUCTIONS**
 
 **Due by 9am Tuesday**, post link in #storytelling-hw.
 
-#### Using external data
+### HOMEWORK TIP: Using external data
 
 We don't want to type all of this data into some `var datapoints =` line, we just want to use the csv that we downloaded or expored from Excel! It's no big deal - I have a [writeup here](http://jonathansoma.com/tutorials/d3/using-external-data/) but the text below might be enough for you.
 
@@ -155,7 +155,7 @@ You'll need a notice that says
 
 Visit [http://localhost:8000/](http://localhost:8000), open up your html file from there, and you'll be good to go!
 
-#### How to fix up your data set
+### HOMEWORK TIP: How to fix up your data set
 
 There are lots of great data sources on [http://www.economicswebinstitute.org/ecdata.htm](http://www.economicswebinstitute.org/ecdata.htm), *but* you'll need to edit them a little bit.
 
