@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js'></script>  
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+  d3.csv("cities.csv", function(error, data) {
+  	/* Take a look at our data */
+    console.log(data);
+    console.log(data[0]);
+  });
+  </script>
+</body>
+</html>
