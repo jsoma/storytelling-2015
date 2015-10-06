@@ -14,3 +14,13 @@ You'll want to be sure ot use `python -m SimpleHTTPServer` to be able to read yo
 
 <a id="review"></a>
 
+## Homework 9
+
+Use [population.csv](https://github.com/jsoma/storytelling-2015/raw/master/class-09-10/population.csv) and make a map of the world, using:
+
+* Use color for the country or region
+* Use circle radius to stand for the population
+
+Focus it on any particular part of the world using `.center() and `.scale()` and write a little summary of your "findings."
+
+Turn it in by Thursday 9AM by posting in `#storytelling-hw`.
