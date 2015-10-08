@@ -54,6 +54,13 @@ For your homework, you are to make **at least two maps**, and give a little capt
 
 Post links in `#storytelling-hw` on Slack by 9am Tuesday.
 
+You have a few options with your data sources:
+
+1. **You have some geojson with information attached already:** ...where did you get that?
+2. **You have a shapefile that has numerical data attached to it:** see section on converting shapefiles to geojson
+3. **You have a shapefile + a csv:** if they have matching columns (e.g. one says VIRGINIA in a column and the other also says VIRGINIA in a column) see section on combining below
+4. **You are lost and alone:** see Census info below and just use the county-level map we have
+
 ### Data sources
 
 If you have something, **go for it!** Shapefiles are fine, you'll just need to convert them (see below).
@@ -97,7 +104,7 @@ Use [this installer](http://www.kyngchaos.com/software/frameworks#gdal) to insta
 
 ### Making your own dataset
 
-You could always go to [geojson.io](http://geojson.io) to make your own dataset if you *really* wanted to. It better be awesome, though.
+You could always go to [geojson.io](http://geojson.io) to make your own dataset if you *really* wanted to. It better be awesome, though!
 
 ### Combining two datasets
 
@@ -143,3 +150,4 @@ For a working example and a closer look (with more comments), open [10-homework-
 </script>
 ````
 
+And yes, you could combine a **million** datasets and layer them all on top of one another - use some geojson for lines and then a csv for city dots etc etc etc.
