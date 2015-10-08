@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js'></script>  
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+  
+  // A magic function to add csv data into your geojson
+  // pass it four things:
+  // your geojson data
+  // your csv data
+  // the name of the common column in your JSON properties (i.e. state_name)
+  // the name of the common column in your CSV data (i.e. state)
+  function combineData(geojson_data, csv_data, geojson_key, csv_key) {
+    geojson_data['features'].forEach( function(d_json) {
+      csv_data.forEach( function(d_csv) {
+        if(d_json['properties'][geojson_key] == d_csv[csv_key])
+          Object.keys(d_csv).forEach( function(key) { d_json['properties'][key] = d_csv[key]; });
+      });
+    });
+  }
+  
+  /*
+    PAY ATTENTION TO THIS!!!!
+    It's a call to d3.json INSIDE OF a d3.csv.
+    This is NOT the way you're supposed to do it...
+      ...but it's the way we're going to do it.
+  */
+  
+  // Read in the .csv
+  d3.csv("10-homework-data.csv", function(error, csv_data) {    
+    // When that's done, read in the .json
+    d3.json("10-homework-shapes.json", function(error, data) {    
+
+      console.log("Doesn't have the added data yet, properties look like:");
+      console.log(data['features'][0]['properties']);
+      
+      // call this magic function that adds the csv_data to the json
+      // MAKE SURE THEY HAVE A COLUMN IN COMMON
+      // state_name is a property inside of data (the geojson file)
+      // state is a column inside of the csv
+      combineData(data, csv_data, "state_name", "state");
+
+      console.log("Has the added data now, properties look like:");
+      console.log(data['features'][0]);
+      
+      // Now you can make your map
+    
+    });
+  });
+  </script>
+</body>
+</html>

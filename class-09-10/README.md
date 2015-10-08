@@ -43,3 +43,87 @@ Be sure to use `python -m SimpleHTTPServer`!
 
 * [Shape Maps](http://jonathansoma.com/tutorials/d3/shape-maps/)
 * [Color scales](http://jonathansoma.com/tutorials/d3/color-scale-examples/)
+
+## Homework 10
+
+For your homework, you are to make **at least two maps**, and give a little caption of what the map is. At least one should have some sort of color scale (although categorical/ordinal is also fine, doesn't have to be linear/quantile/etc). Post links in Slack by 9am Tuesday.
+
+### Data sources
+
+If you have something, **go for it!**. Shapefiles are fine, you'll just need to convert them (see below).
+
+[NYC data mine](https://data.cityofnewyork.us/data?browseSearch=&scope=&agency=&cat=&type=maps) data sets are usually garbage, but hey, they exist. Be sure to download the shapefile to convert -DO NOT try to download the JSON, it isn't *GeoJSON*. DC [has one too](http://opendata.dc.gov/), as do most cities. But yeah, generally terrible data.
+
+I personally enjoy the US Census Burea's [American Factfinder](http://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml?refresh=t). To get data to use with our county data set:
+
+1. Visit [http://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml?refresh=t](http://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml?refresh=t)
+2. Click `Geographies`
+3. Select `...County - 50` from the dropdown
+4. Select `All Counties within United States`
+5. Click `Add to your selections`
+6. Pick a table
+7. Click `Modify Table` in the upper left
+8. Click the *filter icon* ![http://factfinder.census.gov/common/img/ts_filter.png](http://factfinder.census.gov/common/img/ts_filter.png) and make sure you're a) only getting the estimate, NOT the margin of error, and b) only getting the columns you want. (There are probably *two* filter icons, one for each.)
+9. Click or unclick any boxes on the left-hand side to include or not-include the data
+10. Click "Transpose Rows/Columns" to make one county = one row, instead of one county = one column
+11. Click "Download"
+12. Uncheck "Include descriptive data element names"
+13. Click DOWNLOAD
+14. Oh my god you are finally done
+
+### Convert a Shapefile to GeoJSON
+
+Have a shapefile and want to convert it? You have a few options.
+
+#### Use [ogre.adc4gis.com/](http://ogre.adc4gis.com/) or [www.mapshaper.org/](http://www.mapshaper.org/)
+
+Make sure it's one that's **zipped up**, and has a `.shp` along with a `.prj` (and any other files). If it automatically unzips, be sure to zip it up again. Upload it and it should send you back some nice GeoJSON.
+
+#### Do it yourself with GDAL
+
+Maybe it's too big? That might be problematic when reading it into d3, but if you wanted to do it yourself...
+
+Use [this installer](http://www.kyngchaos.com/software/frameworks#gdal) to install GDAL (GDAL framework link), then open up a new Terminal window, make your way to the directory with the shapefile, and run:
+
+     ogr2ogr -f GeoJSON -t_srs crs:84 outputname.geojson inputname.shp
+
+### Making your own dataset
+
+You could always go to [geojson.io](http://geojson.io) to make your own dataset if you *really* wanted to. It better be awesome, though.
+
+### Combining two datasets
+
+What if you have a shapefile/GeoJSON for the shapes and a CSv for your data? Well, this is a terrible way to do it, but it's what we're able to do now.
+
+**MAKE SURE YOU HAVE A COLUMN THAT IS THE SAME BETWEEN THE TWO, NAMES OR ABBREVIATIONS OR CODES OR WHATEVER**. It'll probably be `GEO_ID` and `GEO.id` if you're downloading Census data and using the counties geojson we used in class.
+
+You want to add this function and call `d3.csv` and then `d3.json` once it's pulled in the csv. Then you run `combineData` and it adds the data from the CSV into your geojson's properties.
+
+For a working example and a closer look (with more comments), open [10-homework-compiled.zip](https://github.com/jsoma/storytelling-2015/raw/master/class-09-10/10-homework-compiled.zip).
+
+````javascript
+  function combineData(geojson_data, csv_data, geojson_key, csv_key) {
+    geojson_data['features'].forEach( function(d_json) {
+      csv_data.forEach( function(d_csv) {
+        if(d_json['properties'][geojson_key] == d_csv[csv_key])
+          Object.keys(d_csv).forEach( function(key) { d_json['properties'][key] = d_csv[key]; });
+      });
+    });
+  }
+
+  // Yes, this is a d3.json inside of a d3.csv
+  d3.csv("10-homework-data.csv", function(error, csv_data) {    
+    d3.json("10-homework-shapes.json", function(error, data) {    
+      // state_name is the column from the geojson
+      // name is the column from the csv
+      combineData(data, csv_data, "state_name", "name");
+      
+      // Now your 'data' elements have the info from the csv file
+      // inside of their properties
+      
+      
+    })
+  })
+
+  
+
