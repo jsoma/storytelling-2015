@@ -25,9 +25,7 @@
       1) geometry - the type (multipolygon, line, point) and the coordinates
       2) properties - the bits of data that come along with it
     */
-    
-    /* Let's build something at http://geojson.io/ */
-    
+        
     
     // Build our chart space
     var svg_height = 500, svg_width = 600;
@@ -48,12 +46,6 @@
     var projection = d3.geo.albersUsa()
                             .scale(800)
                             .translate([width / 2, height / 2]);
-
-    // we obviously need to create a path for every feature..
-    map.selectAll("path")
-        .data(counties)
-        .enter()
-        .append("path");
     
   });
   </script>
