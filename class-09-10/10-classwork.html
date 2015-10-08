@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js'></script>  
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+  <!-- data from http://eric.clst.org/Stuff/USGeoJSON -->
+  d3.json("gz_2010_us_050_00_5m.json", function(error, data) {
+  	/* Take a look at our data */
+    console.log(data);
+
+    /* Hmmmm, it has a .type and it has .features. What's in .features? */
+    console.log(data['features']);
+
+    /* It's a long list of stuff! Let's look inside one of those features */
+    console.log(data['features'][0]);
+    
+    /* Let's break out our features into another variable... */
+    var counties = data['features'];
+
+    /* 
+      Okay, so it has two bits:
+      1) geometry - the type (multipolygon, line, point) and the coordinates
+      2) properties - the bits of data that come along with it
+    */
+    
+    /* Let's build something at http://geojson.io/ */
+    
+    
+    // Build our chart space
+    var svg_height = 500, svg_width = 600;
+    var margins = 0;
+    var height = svg_height - margins * 2;
+    var width = svg_width - margins * 2;
+
+    // Append the svg inside of our div
+    var svg = d3.select("#map")
+                .append("svg")
+                .attr('height', svg_height)
+                .attr('width', svg_width);
+
+    // Add in the g to offset it with the margin space
+    var map = svg.append("g").attr("transform", "translate(" + margins + "," + margins + ")");
+
+    // create our projection
+    var projection = d3.geo.albersUsa()
+                            .scale(800)
+                            .translate([width / 2, height / 2]);
+
+    // we obviously need to create a path for every feature..
+    map.selectAll("path")
+        .data(counties)
+        .enter()
+        .append("path");
+    
+  });
+  </script>
+</body>
+</html>
