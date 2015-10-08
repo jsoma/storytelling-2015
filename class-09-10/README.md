@@ -50,11 +50,13 @@ Be sure to use `python -m SimpleHTTPServer`!
 
 ## Homework 10
 
-For your homework, you are to make **at least two maps**, and give a little caption of what the map is. At least one should have some sort of color scale (although categorical/ordinal is also fine, doesn't have to be linear/quantile/etc). Post links in Slack by 9am Tuesday.
+For your homework, you are to make **at least two maps**, and give a little caption of what the map is. At least one should have some sort of color scale (although categorical/ordinal is also fine, doesn't have to be linear/quantile/etc).
+
+Post links in `#storytelling-hw` on Slack by 9am Tuesday.
 
 ### Data sources
 
-If you have something, **go for it!**. Shapefiles are fine, you'll just need to convert them (see below).
+If you have something, **go for it!** Shapefiles are fine, you'll just need to convert them (see below).
 
 [NYC data mine](https://data.cityofnewyork.us/data?browseSearch=&scope=&agency=&cat=&type=maps) data sets are usually garbage, but hey, they exist. Be sure to download the shapefile to convert -DO NOT try to download the JSON, it isn't *GeoJSON*. DC [has one too](http://opendata.dc.gov/), as do most cities. But yeah, generally terrible data.
 
@@ -74,6 +76,8 @@ I personally enjoy the US Census Burea's [American Factfinder](http://factfinder
 12. Uncheck "Include descriptive data element names"
 13. Click DOWNLOAD
 14. Oh my god you are finally done
+
+If there's anything in particular you want, feel 
 
 ### Convert a Shapefile to GeoJSON
 
@@ -97,7 +101,9 @@ You could always go to [geojson.io](http://geojson.io) to make your own dataset 
 
 ### Combining two datasets
 
-What if you have a shapefile/GeoJSON for the shapes and a CSv for your data? Well, this is a terrible way to do it, but it's what we're able to do now.
+What if you have a shapefile/GeoJSON for the shapes and a CSV for your data? We're going to do it in a *half-good* way.
+
+We're going to use the `queue` library to read in a list of files, and then use JavaScript to combine the csv into your json data.
 
 **MAKE SURE YOU HAVE A COLUMN THAT IS THE SAME BETWEEN THE TWO, NAMES OR ABBREVIATIONS OR CODES OR WHATEVER**. It'll probably be `GEO_ID` and `GEO.id` if you're downloading Census data and using the counties geojson we used in class.
 
@@ -105,7 +111,10 @@ You want to add this function and call `d3.csv` and then `d3.json` once it's pul
 
 For a working example and a closer look (with more comments), open [10-homework-compiled.zip](https://github.com/jsoma/storytelling-2015/raw/master/class-09-10/10-homework-compiled.zip).
 
-````javascript
+````html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js'></script>  
+<script>
   function combineData(geojson_data, csv_data, geojson_key, csv_key) {
     geojson_data['features'].forEach( function(d_json) {
       csv_data.forEach( function(d_csv) {
@@ -115,19 +124,22 @@ For a working example and a closer look (with more comments), open [10-homework-
     });
   }
 
-  // Yes, this is a d3.json inside of a d3.csv
-  d3.csv("10-homework-data.csv", function(error, csv_data) {    
-    d3.json("10-homework-shapes.json", function(error, data) {    
+  queue()
+    .defer(d3.json, "10-homework-shapes.json")
+    .defer(d3.csv, "10-homework-data.csv")
+    .await( function(error, data, csv_data) {
       // state_name is the column from the geojson
       // name is the column from the csv
-      combineData(data, csv_data, "state_name", "name");
-      
+      combineData(data, csv_data, "state_name", "state");
+
       // Now your 'data' elements have the info from the csv file
       // inside of their properties
       
+      console.log("Has the added data now, properties look like:");
+      console.log(data['features'][0]);
       
-    })
+      var svg = d3.select("#chart").append('svg'); // etc etc
   })
-
-  
+</script>
+````
 

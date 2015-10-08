@@ -2,6 +2,7 @@
 <html>
 <head>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js'></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
 </head>
 <body>
   <div id="map"></div>
@@ -16,8 +17,7 @@
   function combineData(geojson_data, csv_data, geojson_key, csv_key) {
     geojson_data['features'].forEach( function(d_json) {
       csv_data.forEach( function(d_csv) {
-        if(d_json['properties'][geojson_key] == d_csv[csv_key])
-          Object.keys(d_csv).forEach( function(key) { d_json['properties'][key] = d_csv[key]; });
+        if(d_json['properties'][geojson_key] == d_csv[csv_key]) { Object.keys(d_csv).forEach( function(key) { d_json['properties'][key] = d_csv[key]; }); }
       });
     });
   }
@@ -28,27 +28,38 @@
     This is NOT the way you're supposed to do it...
       ...but it's the way we're going to do it.
   */
-  
-  // Read in the .csv
-  d3.csv("10-homework-data.csv", function(error, csv_data) {    
-    // When that's done, read in the .json
-    d3.json("10-homework-shapes.json", function(error, data) {    
 
+  // Read in the GeoJSON and the CSV, then run the function
+  // queue says, 'hey, we gotta load in two files'
+  // the first one please read it with d3.json
+  // the second one please read it with d3.csv
+  // then run whatever is in .await
+  queue()
+    .defer(d3.json, "10-homework-shapes.json")
+    .defer(d3.csv, "10-homework-data.csv")
+    .await( function(error, data, csv_data) {
+      // this is run when both files are finished being read in
+      // error is any errors that cropped up
+      // data is your shapes
+      // csv_data is your csv data
+      
       console.log("Doesn't have the added data yet, properties look like:");
       console.log(data['features'][0]['properties']);
-      
+
       // call this magic function that adds the csv_data to the json
       // MAKE SURE THEY HAVE A COLUMN IN COMMON
       // state_name is a property inside of data (the geojson file)
       // state is a column inside of the csv
       combineData(data, csv_data, "state_name", "state");
 
+      // Now your 'data' elements have the info from the csv file
+      // inside of their properties
+    
       console.log("Has the added data now, properties look like:");
-      console.log(data['features'][0]);
+      console.log(data['features'][0]['properties']);
       
       // Now you can make your map
-    
-    });
+      var svg = d3.select("#chart").append('svg'); // etc etc
   });
   </script>
 </body>
