@@ -29,6 +29,8 @@ Focus it on any particular part of the world using `.center()` and `.scale()`, a
 
 Turn it in by Thursday 9AM by posting in `#storytelling-hw`.
 
+<a id='class10'></a>
+
 # Class 10: Line/Shape Maps
 
 Class contents are in [the 10-compiled.zip file](https://github.com/jsoma/storytelling-2015/raw/master/class-09-10/10-compiled.zip)
@@ -43,6 +45,8 @@ Be sure to use `python -m SimpleHTTPServer`!
 
 * [Shape Maps](http://jonathansoma.com/tutorials/d3/shape-maps/)
 * [Color scales](http://jonathansoma.com/tutorials/d3/color-scale-examples/)
+
+<a id='class10-hw'></a>
 
 ## Homework 10
 
