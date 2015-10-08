@@ -114,9 +114,7 @@ We're going to use the `queue` library to read in a list of files, and then use 
 
 **MAKE SURE YOU HAVE A COLUMN THAT IS THE SAME BETWEEN THE TWO, NAMES OR ABBREVIATIONS OR CODES OR WHATEVER**. It'll probably be `GEO_ID` and `GEO.id` if you're downloading Census data and using the counties geojson we used in class.
 
-You want to add this function and call `d3.csv` and then `d3.json` once it's pulled in the csv. Then you run `combineData` and it adds the data from the CSV into your geojson's properties.
-
-For a working example and a closer look (with more comments), open [10-homework-compiled.zip](https://github.com/jsoma/storytelling-2015/raw/master/class-09-10/10-homework-compiled.zip).
+Check out the code below. For a working example and a closer look (with more comments), open [10-homework-compiled.zip](https://github.com/jsoma/storytelling-2015/raw/master/class-09-10/10-homework-compiled.zip).
 
 ````html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
