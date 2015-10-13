@@ -16,7 +16,7 @@ Remember to use `python -m SimpleHTTPServer`!
 
 ## Homework
 
-### [Koreans in NYC + Age in NYC](http://woojink.neocities.org/hw/hw10/10-homework.html)
+#### [Koreans in NYC + Age in NYC](http://woojink.neocities.org/hw/hw10/10-homework.html)
 
 ````javascript
 var color_scale = d3.scale.linear().domain([0, max_dp0080011]).range(['#e0ece4','#6e016b']);
@@ -26,7 +26,7 @@ var color_scale = d3.scale.linear().domain([0, max_dp0080011]).range(['#e0ece4',
 var color_scale2 = d3.scale.linear().domain([min_age, max_age]).range(['#ffffff','#7f0000']);
 ````
 
-### [Where are the (Poor) College Graduates?](http://siutanwong.neocities.org/hw10/hw10.html)
+#### [Where are the (Poor) College Graduates?](http://siutanwong.neocities.org/hw10/hw10.html)
 
 ````javascript
 var color_scale = d3.scale.linear().domain([0, 70.0]).range(['beige', 'red']);
@@ -36,7 +36,7 @@ var color_scale = d3.scale.linear().domain([0, 70.0]).range(['beige', 'red']);
 var color_scale2 = d3.scale.linear().domain([0, 30.0]).range(['beige', 'blue']);
 ````
 
-### [NYC Population + Vacant Units](http://jordanrosenblum.neocities.org/HW10/hw10.html)
+#### [NYC Population + Vacant Units](http://jordanrosenblum.neocities.org/HW10/hw10.html)
 
 
 ````javascript
@@ -51,7 +51,7 @@ var color_scale2 = d3.scale.linear()
                             .range(['#E0F5FF', '#478FB2', '#142933']);
 ````
 
-### [GDP Growth of Mainland China](http://www.newsontheroad.com/data/d3/Storytelling_with_data_Homework10_D3.html)
+#### [GDP Growth of Mainland China](http://www.newsontheroad.com/data/d3/Storytelling_with_data_Homework10_D3.html)
 
 ````javascript
 var color_scale=d3.scale.linear().domain([0,0.1,7,11]).range(['grey','red','beige','green']);
@@ -61,7 +61,7 @@ var color_scale=d3.scale.linear().domain([0,0.1,7,11]).range(['grey','red','beig
 var color_scale = d3.scale.linear().domain([min_index,max_index]).range(['blue','red']);
 ````
 
-### [Infant Mortality Rate, 1991 vs 2015](http://arushi.neocities.org/Homework10.html)
+#### [Infant Mortality Rate, 1991 vs 2015](http://arushi.neocities.org/Homework10.html)
 
 ````javascript
 var color_scale1 = d3.scale.linear()
@@ -75,7 +75,7 @@ var color_scale = d3.scale.linear()
   .range(['#62DB44', '#113573', '#CF1020']);
 ````
 
-### [Bachelors Degrees by Subject](http://melissalhaney.neocities.org/homework10.html)
+#### [Bachelors Degrees by Subject](http://melissalhaney.neocities.org/homework10.html)
 
 ````javascript
 var color_scale = d3.scale.linear()
@@ -83,7 +83,7 @@ var color_scale = d3.scale.linear()
     .range(['beige', '#F29500', '#D40000']);
 ````
 
-### [Water supply/demand by county](http://casey-huang.neocities.org/HW10.html)
+#### [Water supply/demand by county](http://casey-huang.neocities.org/HW10.html)
 
 ````javascript
 var color_scale1 = d3.scale.quantile()
@@ -97,7 +97,7 @@ var color_scale2 = d3.scale.quantile()
   .range(['#fffbe9', '#fffed9', '#fff9ba', '#fff47c', '#ffdd00', '#ffce00', '#d6b800', '#b49a00', '#897c00']);
 ````
 
-### [Housing Choices for Married and Non-Family Households](http://superlativenoun.neocities.org/hw10.html)
+#### [Housing Choices for Married and Non-Family Households](http://superlativenoun.neocities.org/hw10.html)
 
 ````javascript
 //  d3.max function is giving back very low value for max_val (9.9)
