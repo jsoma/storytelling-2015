@@ -115,6 +115,23 @@ var color_scale = d3.scale.linear()
     .range(['#5aaf8c', '#ffffe0', '#d84765']);
 ````
 
+#### [Family Income in the US](http://spe.neocities.org/lede_class/hw10/10-homework-income.html)
+
+````javascript
+// var color_scale = d3.scale.threshold()
+var color_scale = d3.scale.linear()
+  // .domain([100, 500, 1000, 2500, 5000, 10000])
+  // .range(['violet', 'indigo', 'blue', 'green', 'yellow', 'orange', 'red']);
+
+  .domain([ min_income , median_income, max_income])
+  // .range(['violet', 'indigo', 'blue', 'green', 'yellow', 'orange', 'red']);
+  // .range(['#007fff','#72a0e5','#ff8000', '#ff0000']);
+  .range(['#1a1aff','#551a8b', 'red']);
+
+  // .range(['#00ff00','green','yellow']);
+  // .range(['#1a1aff','#329932', 'yellow']);
+````
+
 ## Review
 
 Pull data in and out of a `d3.map()` so you don't have to store it with the JSON
