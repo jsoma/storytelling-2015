@@ -1,0 +1,66 @@
+<html>
+<head>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+</head>
+<body>
+<div id="map"></div>
+<script>
+// Be sure to use python -m SimpleHTTPServer to view this or you'll get errors!
+queue()
+  .defer(d3.json, "gz_2010_us_050_00_5m.json")
+  .defer(d3.csv, "water.csv")
+  .defer(d3.tsv, "gaz_counties_national.txt")
+  .await( function(error, county_data, water_data, population_data) {
+
+    // Pull out our counties - remember, it's geojson!
+    var counties = county_data['features'];
+
+    // Exammine our data
+    console.log("County data looks like");
+    console.log(counties[0]);
+    
+    console.log("Water data looks like");
+    console.log(water_data[0]);
+
+    console.log("Population data looks like");
+    console.log(population_data[0]);
+
+    var height = 500;
+    var width = 800;
+
+    // Create an svg and put a g inside for good practice
+    var svg = d3.select("#map").append("svg").attr('height', height).attr('width', width);
+    var map = svg.append("g").attr('class', 'water-map');
+    
+    // Set up our geography...
+    var projection = d3.geo.albersUsa()
+                            .scale(750)
+                            .translate([width / 2, height / 2]);
+    // create a helper for the 'd' in the path elemnts 
+    var path = d3.geo.path().projection(projection);
+
+    var scale_colors = ['#eef2f5', '#e4ebf1', '#dee8ef', '#d6e4ed', '#d0e2ed', '#c3daec', '#93d5e2', '#04abd0', '#4477c2'];
+    var all_values = counties.map( function(d) {
+      return d['properties']['CENSUSAREA'];
+    });
+    
+    var color_scale = d3.scale.quantile()
+                              .domain(all_values)
+                              .range(scale_colors);
+
+    map.selectAll("path")
+        .data(counties)
+        .enter()
+        .append("path")
+        .attr('d', path)
+        .style('fill', function(d) {
+          return color_scale(d['properties']['CENSUSAREA']);
+        });
+    
+    
+
+});
+</script>
+</body>
+</html>

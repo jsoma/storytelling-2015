@@ -10,7 +10,7 @@ Our tracking URL will be
 
 * `http://jonathansoma.com/columbia/09-classwork.html`
 
-You'll want to be sure ot use `python -m SimpleHTTPServer` to be able to read your external data.
+You'll want to be sure to use `python -m SimpleHTTPServer` to be able to read your external data.
 
 <a id="review"></a>
 

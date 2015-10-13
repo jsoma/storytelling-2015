@@ -1,0 +1,91 @@
+<html>
+<head>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+</head>
+<body>
+<div id="map"></div>
+<script>
+var water_usage = d3.map();
+var population = d3.map();
+
+// Be sure to use python -m SimpleHTTPServer to view this or you'll get errors!
+queue()
+  .defer(d3.json, "gz_2010_us_050_00_5m.json")
+  .defer(d3.csv, "water.csv", function(d) {
+    // use the FIPS code to store the data in water_usage
+    return water_usage.set(d['FIPS'], d);
+  })
+  .defer(d3.tsv, "gaz_counties_national.txt", function(d) {
+    // use the GEOID to store the data in population
+    return population.set(d['GEOID'], d);
+  })
+  .await( function(error, county_data, water_data, population_data) {
+    // now we still have water_data and population_data if we want 
+    // to use them, but now we also have
+    // water_usage and population, where we can grab specific counties
+    // just by giving it a GEOID
+    
+    // For example, Kings County (Brooklyn) is 06031
+    console.log("FOR BROOKLYN/06031");
+    console.log("Water:")
+    console.log(water_usage.get('06031'));
+    console.log("Population:")
+    console.log(population.get('06031'));
+    
+    // Pull out our counties - remember, it's geojson!
+    var counties = county_data['features'];
+
+    // Exammine our data
+    console.log("County data looks like");
+    console.log(county_data['features'][0]);
+    
+    console.log("Water data looks like");
+    console.log(water_data[0]);
+
+    console.log("Population data looks like");
+    console.log(population_data[0]);
+
+    var height = 500;
+    var width = 800;
+
+    // Create an svg and put a g inside for good practice
+    var svg = d3.select("#map").append("svg").attr('height', height).attr('width', width);
+    var map = svg.append("g").attr('class', 'water-map');
+    
+    // Set up our geography...
+    var projection = d3.geo.albersUsa()
+                            .scale(750)
+                            .translate([width / 2, height / 2]);
+    // create a helper for the 'd' in the path elemnts 
+    var path = d3.geo.path().projection(projection);
+
+    var scale_colors = ['#eef2f5', '#e4ebf1', '#dee8ef', '#d6e4ed', '#d0e2ed', '#c3daec', '#93d5e2', '#04abd0', '#4477c2'];
+    var all_values = counties.map( function(d) {
+      return d['properties']['CENSUSAREA'];
+    });
+    
+    var color_scale = d3.scale.quantile()
+                              .domain(all_values)
+                              .range(scale_colors);
+
+    map.selectAll("path")
+        .data(counties)
+        .enter()
+        .append("path")
+        .attr('d', path)
+        .style('fill', function(d) {
+          // for this object, combining d['properties']['STATE'] and d['properties']['STATE']
+          // makes the FIPS code
+          var fips = d['properties']['STATE'] + d['properties']['STATE'];
+          var water = water_usage.get(fips);
+          var pop = population.get(fips);
+          return color_scale(d['properties']['CENSUSAREA']);
+        });
+    
+    
+
+});
+</script>
+</body>
+</html>
