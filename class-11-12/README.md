@@ -12,6 +12,19 @@ Our tracking URL will be
 
 Remember to use `python -m SimpleHTTPServer`!
 
+## Homework
+
+Make a map! Or a chart. You can just revise what you turned in on Tuesday.
+
+Reading list:
+
+* [WNYC Stop and Frisk Critique](http://spatialityblog.com/2012/07/27/nyc-stop-frisk-cartographic-observations/)
+* [Value by alpha maps](http://andywoodruff.com/blog/value-by-alpha-maps/)
+* [How the Rainbow Color Map Misleads](https://eagereyes.org/basics/rainbow-color-map)
+* [Norminal vs Ordinal vs Quantitative](http://cose.math.bas.bg/Sci_Visualization/compGenVis/chapter2/tsld012.htm)
+* [Interactive Population Map](http://www.slate.com/articles/life/culturebox/2014/10/population_map_use_our_interactive_map_to_figure_out_how_many_flyover_states.html)
+* [Racial Dot Map](http://demographics.coopercenter.org/DotMap/)
+
 ## Homework Critique
 
 #### [Koreans in NYC + Age in NYC](http://woojink.neocities.org/hw/hw10/10-homework.html)
@@ -133,6 +146,11 @@ var color_scale = d3.scale.linear()
 <a id="review"></a>
 
 ## Review
+
+* Simple beige-red color ramps can be tough to draw conclusion from
+* Slippy maps are sometimes better to allow browsability and zooming etc
+* Prisons are the worst
+
 
 Pull data in and out of a `d3.map()` so you don't have to store it with the JSON
 
