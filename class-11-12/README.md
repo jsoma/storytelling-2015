@@ -1,6 +1,6 @@
-[Class 9](#class9) | [Class 10](#class10)
+[Class 11](#class11) | [Class 12](#class12)
 
-<a id='class9'></a>
+<a id='class11'></a>
 
 # Class 11: Critique and data munging
 
@@ -12,9 +12,7 @@ Our tracking URL will be
 
 Remember to use `python -m SimpleHTTPServer`!
 
-<a id="review"></a>
-
-## Homework
+## Homework Critique
 
 #### [Koreans in NYC + Age in NYC](http://woojink.neocities.org/hw/hw10/10-homework.html)
 
@@ -131,6 +129,8 @@ var color_scale = d3.scale.linear()
   // .range(['#00ff00','green','yellow']);
   // .range(['#1a1aff','#329932', 'yellow']);
 ````
+
+<a id="review"></a>
 
 ## Review
 
