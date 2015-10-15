@@ -12,7 +12,7 @@ Our tracking URL will be
 
 Remember to use `python -m SimpleHTTPServer`!
 
-I've broken out the **homework** and **links** into [README-11.md](README-11.md).
+I've broken out the **homework** and **links** into [11-README.md](11-README.md).
 
 ## Homework
 
@@ -38,7 +38,18 @@ Our tracking URL will be
 
 Remember to use `python -m SimpleHTTPServer`!
 
-## Review
+## Links
 
+* [Chessboard](https://upload.wikimedia.org/wikipedia/commons/e/ed/Same_color_illusion_proof2.png)
 * [Color Brewer](http://colorbrewer2.org)
+* [HSV/HSL](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Hsl-hsv_models.svg/800px-Hsl-hsv_models.svg.png)
+* [Chromoscope](http://www.chromoscope.net)
+* [Mantis Shrimp](https://en.wikipedia.org/wiki/Mantis_shrimp#Eyes)
+* [Retinal Variables](http://understandinggraphics.com/wp-content/uploads/2010/01/retinal-variables.png)
 * [Color Oracle](http://colororacle.org)
+* [GDP Growth in Mainland China](http://www.newsontheroad.com/data/d3/Storytelling_with_data_Homework10_D3.html)
+* [Housing Choices](http://superlativenoun.neocities.org/hw10.html)
+* [How old is your Neighborhood?](http://woojink.neocities.org/hw/11-homework.html)
+* [What did you major in?](http://melissalhaney.neocities.org/homework11.html)
+* [Mass shootings](http://spe.neocities.org/lede_class/hw8/hw8-mass-shootings-redesign.html)
+* [Commute times](http://journcoder.neocities.org/LFhomework11.html)
