@@ -53,3 +53,39 @@ Remember to use `python -m SimpleHTTPServer`!
 * [What did you major in?](http://melissalhaney.neocities.org/homework11.html)
 * [Mass shootings](http://spe.neocities.org/lede_class/hw8/hw8-mass-shootings-redesign.html)
 * [Commute times](http://journcoder.neocities.org/LFhomework11.html)
+
+<a id="class12-hw"></a>
+
+## Class 12 Homework
+
+For you homework you'll need to create **two maps or charts that use class-based interactivity**. The maps or charts must be **different types**, for example:
+
+* a map and some line charts, or
+* a bar graph and a line chart, or
+* a map of shapes and a map of points, etc.
+
+When you hover or click something in one visualization, it should change something about the other visualization (this doesn't have to go both ways). You'll want to assign classes to each data point in your visualizations, and then use those classes to manipulate the data.
+
+Additionally, create a writeup that can be used to interact with the map. A simple example would be
+
+**HTML**
+
+````html
+There were <a href="#" class="show-shootings-2015">3 shootings in 2015</a>.
+````
+
+**Javascript**
+
+````javascript
+// Grab all the links on the page that point to 'show-shootings-2015'
+d3.selectAll(".show-shootings-2015").on('mouseover', function(d) {
+  // Turn 2015's shooting circles red
+  d3.selectAll(".shooting-circle.year-2015").style('fill', 'red');
+})
+````
+
+A simple way to create your two visuals would be to display all of your points on one visual, then have another visual that groups your data (by year, etc). Interacting with the grouped one will then highlight pieces of your complete visualization. See more info about using `d3.nest` for grouped data at [http://learnjsdata.com/group_data.html](http://learnjsdata.com/group_data.html), or in our classwork at [12-classwork-completed.html](12-classwork-completed.html) (the line chart is grouped by years).
+
+**More tips**
+
+You can give elements multiple classes using spaces, e.g. `"animal cat has-claws"`. When using `d3.selectAll` you can grab them using any combination, such as `.animal`, `.cat`, `.has-claws`, `.animal.has-claws`, etc. This enables you to slice your data different ways.

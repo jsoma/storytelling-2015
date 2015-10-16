@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +20,8 @@
 </style>
 </head>
 <body>
+  <h1>Class 12 work</h1>
+  <!-- jonathansoma.com/columbia/12-classwork.html -->
   <div id="map"></div>
   <div id="graph"></div>
   <script>
@@ -92,6 +96,9 @@
               .style("fill", "#333333")
               .style('opacity', 0.7)
               .attr("r", 3)
+              .attr('class', function(d) {
+                return "shooting year-" + d['Year'] + " venue-" + d['Venue'];
+              })
               .attr("cx", function(d) {
                 var coords = [ +d['Longitude'], +d['Latitude'] ];
                 var projected_coords = projection(coords);
@@ -101,9 +108,6 @@
                 var coords = [ +d['Longitude'], +d['Latitude'] ];
                 var projected_coords = projection(coords);
                 return projected_coords[1];
-              })
-              .attr('class', function(d) {
-                return "shooting year-" + d['Year'];
               });
 
 
@@ -218,7 +222,6 @@
                   .enter()
                   .append('circle')
                   .attr('r', 5)
-                  .style('fill', '#333333')
                   .attr('cx', function(d) {
                     return xscale(d['key']);
                   })
@@ -228,20 +231,26 @@
                   .on("mouseover", function(d) {
                     console.log(d);
                     d3.select(this).style('fill', '#ff0000');
-                    var point_class = ".shooting.year-" + d['key'];
+                    console.log("year-" + d['key']);
+                    var point_class = ".year-" + d['key']
+                    // Grab all of the points with that class
+                    // and make them larger and red
                     d3.selectAll(point_class)
-                      .style('fill', '#ff0000')
-                      .transition()
-                      .attr('r', 10);
+                        .transition()
+                        .style('fill', '#ff0000')
+                        .attr('r', function(d) {
+                          return Math.sqrt(d['Total Victims'] * 5);
+                        })
                   })
                   .on("mouseout", function(d) {
                     console.log(d);
-                    d3.select(this).style('fill', '#333333');
-                    var point_class = ".shooting.year-" + d['key'];
+                    d3.select(this).style('fill', '#000000');
+                    var point_class = ".year-" + d['key'];
+                    // Reset all of those points to a smaller size
                     d3.selectAll(point_class)
-                      .style('fill', '#333333')
-                      .transition()
-                      .attr('r', 3);
+                        .transition()
+                        .style('fill', '#000000')
+                        .attr('r', 3);
                   });
     });
   </script>
