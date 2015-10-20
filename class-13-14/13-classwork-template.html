@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+<style>
+  .axis path,
+  .axis line {
+      fill: none;
+      stroke: black;
+      shape-rendering: crispEdges;
+  }
+
+  .axis text {
+      font-family: sans-serif;
+      font-size: 11px;
+  }
+</style>
+</head>
+<body>
+  <div id="map"></div>
+  <div id="graph"></div>
+  <script>
+  queue()
+    .defer(d3.json, "WorldMap.json")
+    .defer(d3.csv, "tx.val.tech.mf.zs_Indicator_en_csv_v2.csv")
+    .await(function(error, world_json, tech_data) {
+      console.log(world_json);
+      console.log(tech_data);
+      
+      // Pull the countries out of the geojson
+      var countries = world_json['features'];
+      
+      var height = 500, width = 900;
+
+      /* 
+      
+        DRAWING THE MAP
+      
+      */
+      
+      
+      
+      
+      
+      var map_svg = d3.select("#map")
+                    .append("svg")
+                    .attr('height', height)
+                    .attr('width', width);
+
+      /* Create g layers for each aspect of the map */
+      var map = map_svg.append("g");
+      
+      /* 
+        Since it's a map, create a projection and a path helper
+      */
+      var projection = d3.geo.equirectangular()
+                              .scale(140)
+                              .translate([width / 2, height / 2]);
+
+      var path = d3.geo.path().projection(projection);
+
+      /* 
+        Examine the data in the console just so we know
+      */
+      console.log("Country data looks like");
+      console.log(countries[0]);
+
+      /* 
+
+      */
+      map.selectAll("path")
+          .data(countries)
+          .enter()
+          .append("path")
+          .attr('d', path)
+          .style('fill', '#e1e1e1')
+          .style('stroke', '#ffffff');
+
+
+      function update() {
+
+      }
+
+    });
+  </script>
+</body>
+</html>
