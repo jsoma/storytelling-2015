@@ -16,7 +16,7 @@ Takes a look at [high-tech-exports-wide.csv](high-tech-exports-wide.csv) and [hi
 
 You can also check out [this tutorial I wrote](http://jonathansoma.com/tutorials/d3/wide-vs-long-data/) that shows you how to convert between the two (kind of!) in D3/JavaScript.
 
-**`setTimeout`, `setInterval` and `d3.timer`
+**`setTimeout`, `setInterval` and `d3.timer`**
 
 `setTimeout` executes a function after a certain amount of time.
 
