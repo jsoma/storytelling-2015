@@ -1,4 +1,4 @@
-# Class 13: Nonexisting values, time and updating
+# Class 13/14: Nonexisting values, time and updating
 
 Class contents are in [the 13-compiled.zip file](https://github.com/jsoma/storytelling-2015/raw/master/class-13-14/13-compiled.zip)
 
@@ -7,6 +7,61 @@ Our tracking URL will be
 * `http://jonathansoma.com/columbia/13-classwork.html`
 
 Remember to use `python -m SimpleHTTPServer`!
+
+## Review
+
+**Long vs. Wide data**
+
+Takes a look at [high-tech-exports-wide.csv](high-tech-exports-wide.csv) and [high-tech-exports-long.csv](high-tech-exports-long.csv). Wide has one row per country, with every column being a year. Long has one row per country-year pair. You can convert between the two easily with pandas, check out [this notebook](convert-wide-to-long.ipynb).
+
+You can also check out [this tutorial I wrote](http://jonathansoma.com/tutorials/d3/wide-vs-long-data/) that shows you how to convert between the two (kind of!) in D3/JavaScript.
+
+**`setTimeout`, `setInterval` and `d3.timer`
+
+`setTimeout` executes a function after a certain amount of time.
+
+````javascript
+// run a function after 250ms
+setTimeout( function() {
+  console.log("I was just run")
+}, 250)
+````
+
+`setInterval` runs a function after a certain amount of time, again and again and again.
+
+````javascript
+// run a function after 250ms
+setInterval( function() {
+  console.log("I am run every 250ms")
+}, 250)
+````
+
+`d3.timer` runs a function after a certain amount of time, again and again and again. But two important improvements over `setInterval`: 1) if the last iteration hasn't finished yet, it won't run, and 2) it will stop repeating if you return true.
+
+````javascript
+// run a function after 250ms
+var count = 0;
+setInterval( function() {
+  count++;
+  console.log("I am run every 250ms");
+  if(count >= 5) {
+    // stop running after 5 iterations
+    return true;
+  }
+}, 250)
+````
+
+**Missing data**
+
+Instead of testing if something is `None` or `nil` or `null`, you check if its *type is *the string `"undefined"`*. Stupidly complicated, right? Looks like this:
+
+````javascript
+if(typeof datapoint === 'undefined') {
+  return '#666666';
+}
+````
+
+Why doesn't it need parens? [Because they said so](http://stackoverflow.com/questions/15843805/why-does-typeof-not-need-parentheses).
 
 ## Links
 
@@ -18,5 +73,3 @@ Remember to use `python -m SimpleHTTPServer`!
 * [Unemployment Population](http://arushi.neocities.org/Homework12.html)
 * [Most Common Contributing Factors in Fatal NYC Car Crashes](http://superlativenoun.neocities.org/hw12.html)
 * [Major Tranfers in England Premier League (Summer 2015)](http://newsontheroad.neocities.org/lede_storytelling_with_data/Storytelling_with_data_Homework12_D3.html)
-
-# Class 14: Topojson?

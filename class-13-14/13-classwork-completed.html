@@ -28,7 +28,7 @@
 
   queue()
     .defer(d3.json, "WorldMap.json")
-    .defer(d3.csv, "tx.val.tech.mf.zs_Indicator_en_csv_v2.csv", function(d) {
+    .defer(d3.csv, "high-tech-exports-wide.csv", function(d) {
       // store the attribute data, using the country code as the key
       tech_map.set(d['Country Code'], d);
     })

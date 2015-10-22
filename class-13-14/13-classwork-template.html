@@ -23,7 +23,7 @@
   <script>
   queue()
     .defer(d3.json, "WorldMap.json")
-    .defer(d3.csv, "tx.val.tech.mf.zs_Indicator_en_csv_v2.csv")
+    .defer(d3.csv, "high-tech-exports-wide.csv")
     .await(function(error, world_json, tech_data) {
       console.log(world_json);
       console.log(tech_data);
