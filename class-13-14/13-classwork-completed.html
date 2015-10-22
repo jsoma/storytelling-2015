@@ -18,21 +18,47 @@
 </style>
 </head>
 <body>
-  <h1 class="year"></h1>
+  <h1>The year is currently <span id="year"></span></h1>
   <div id="map"></div>
   <div id="graph"></div>
   <script>
-
-  // Create a d3 map to store the per-country data
   var tech_map = d3.map();
 
+
+  // match  Country Code from high-tech-exports
+  // with ISO3 from WorldMap.json
   queue()
     .defer(d3.json, "WorldMap.json")
     .defer(d3.csv, "high-tech-exports-wide.csv", function(d) {
-      // store the attribute data, using the country code as the key
-      tech_map.set(d['Country Code'], d);
+      // d is EVERYTHING WE KNOW about Austria
+      // (that is inside of the csv)
+
+      // saving it by country code because that's the
+      // column that matches between the two data sets
+      var country_code = d['Country Code'];
+      tech_map.set(country_code, d);
+
+      // it's like a dictionary
+      // don't ever try to use tech_dict it's a lie
+      // it's just an example of how they operate the same way
+      // tech_dict['Austria'] = { '1970': 4, '1971': 5 };
+      // tech_map.set('Austria', { '1970': 4, '1971': 5 })
+      // var data = tech_dict['Austria'];
+      // var data = tech_map.get('Austria');
+
     })
     .await(function(error, world_json, tech_data) {
+      console.log(world_json);
+      console.log(tech_data);
+
+      // WE DONT GOTTA DO THIS!
+      // for(var i=0; i < tech_data.length; i++) {
+      //   var country_data = tech_data[i];
+      //   var country_code = country_data['Country Code'];
+      //   tech_map.set(country_code, country_data);
+      // }
+      
+
       // Pull the countries out of the geojson
       var countries = world_json['features'];
       
@@ -65,20 +91,16 @@
 
       var path = d3.geo.path().projection(projection);
 
-      /*
-        Color scale
-      */
-
-      var scale = d3.scale.linear().domain([0, 30]).range(['beige', 'blue']);
+      var color_scale = d3.scale.linear().domain([0, 25]).range(['beige', 'red']);
 
       /* 
         Examine the data in the console just so we know
       */
       console.log("Country data looks like");
-      console.log(countries);
+      console.log(countries[0]);
 
       /* 
-        This is everything that's PERMANENT
+
       */
       map.selectAll("path")
           .data(countries)
@@ -86,68 +108,95 @@
           .append("path")
           .attr('class', 'country')
           .attr('d', path)
-          .style('stroke', '#ffffff')
-          // set a default fill
-          .style('fill', '#666666');
+          .style('fill', '#e1e1e1')
+          .style('stroke', '#ffffff');
 
-      /*
-        This update function is everything that CHANGES
-        (ie just the fill color)
-        accept the year variable for what you should graph
-      */
       function update(year) {
-        // grab all of the countries on the map
-        // you could also do .selectAll('path'), probably
-        // and then set the fill
-        map.selectAll('.country')
-            .style('fill', function(d) {
-              // Grab the country's info from the tech map
-              // using the country code (ISO3)
-              // more info at https://en.wikipedia.org/wiki/ISO_3166-1
-              var country_code = d['properties']['ISO3'];
-              var datapoint = tech_map.get(country_code);
-              
-              // if the data doesn't exist, make it grey
-              if(typeof datapoint === 'undefined') {
-                return '#666666';
-              }
+          map.selectAll('.country')
+              .style('fill', function(d) {
+                // d sucks and is just geographic data
+                // we want our real cool tech export data
+                // if only there were a variable that existed
+                // that we could just simply get the data from
+                // by using the country's code
 
-              // just grab that year's data out using the variable
-              var value = datapoint[year];
+                // oh wait
 
-              // if the data is empty, keep the old value
-              if(value == "") {
-                return d3.select(this).style('fill');
-              } else {
-                // otherwise, let's do it!
-                return scale(value);
-              }
-            })
+                // spoiler alert
+
+                // we got that, yo
+
+                // console.log("Want to look at the geographic stuff?");
+                // console.log("Country code is in properties/ISO3");
+                // now that we have  the country code, we can go
+                // to the national bank of tech_map and make a withdrawal
+                // based on the country code which is how we stored it
+                // in the first place
+
+                var country_data = tech_map.get(d['properties']['ISO3']);
+
+                // country_data is now a row from our csv
+                // about high-tech exports
+                // console.log("Let's look at our country data for", d['properties']['ISO3'])
+                // console.log(country_data);
+
+                // First we have to check if the country
+                // even exists in our tech exports dataset
+                if(typeof country_data === 'undefined') {
+                  return '#e1e1e1';
+                } else {
+                  // then we have to check to make sure
+                  // we have some sort of exports data
+                  // for that year
+                  // (Values without data are empty strings)
+                  var exports = country_data[year];
+                  if(exports === "") {
+                    // instead of sending .style two values, an attribute and
+                    // an amount to set it to, i just gave it the attribute
+                    // so it returns the current value of that attribute
+                    var current_color = d3.select(this).style('fill');
+                    return current_color;
+                  } else {
+                    return color_scale(exports);
+                  }
+                }
+              })
       }
 
-      // Make sure you call update() to make it colored in!
-      // we could always just pass the year as a variable...
-      // update(2005);
+      // ALWAYS REMEMBER TO CALL IT
+      // or you'll be so sad
+      // update('2013');
 
-      // setTimeout is a popular way to do this
+      // setTimeout takes two parameters
+      // first: a function to run
+      // second: an amount of time to wait
+      // before it gets run
       // setTimeout(function() {
-      //   update(2010);
-      // }, 3000)
+      //   update('1988');
+      // }, 2000);
 
-      // setInterval does something again and again
-      var start_year = 1985,
-          end_year = 2015;
+      // // same as above, but it does it again
+      // // and again and again and again
+      // setInterval(function() {
+      //   update('1988');
+      // }, 2000);
+
+      // every time it increases the current_year
+      // by one and draws the map for us
+      var start_year = 1980;
       var current_year = start_year;
       setInterval(function() {
-        current_year = current_year + 1;
+        current_year++;
         if(current_year > 2013) {
-          // reset the map colors
-          map.selectAll('.country').style('fill', '#666666');
+          // reset the year
           current_year = start_year;
+          // reset the map colors
+          map.selectAll(".country").style("fill", '#e1e1e1');
         }
-        d3.select(".year").text(current_year);
+        d3.select("#year").text(current_year);
         update(current_year);
-      }, 1000);
+      }, 500);
+
 
     });
   </script>
