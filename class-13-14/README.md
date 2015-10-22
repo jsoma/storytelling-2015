@@ -63,6 +63,18 @@ if(typeof datapoint === 'undefined') {
 
 Why doesn't it need parens? [Because they said so](http://stackoverflow.com/questions/15843805/why-does-typeof-not-need-parentheses).
 
+<a id="homework"></a>
+
+## Homework
+
+Let's take some data and watch it change over time! Your assignment is to create **two visualizations** (two charts or one map and one chart). One shows a looping animation of your data over time, and the other is *not* animated and presents the same data differently.
+
+For example, the map we made in class + a line chart of all of the countries' high-tech exports over time.
+
+You will **absolutely need to convert your data to long format.** Don't even *try* to do it with wide format data. You will not succeed, mainly because you'll need to `d3.nest` your data to make the line chart. You might want to [refresh your knowledge of `d3.nest`](https://github.com/jsoma/storytelling-2015/tree/master/class-07-08).
+
+My data came from [the World Bank](http://data.worldbank.org/), and yours can too!
+
 ## Links
 
 * [Reddit's /r/DataIsBeautiful](https://www.reddit.com/r/dataisbeautiful)
