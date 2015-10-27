@@ -4,6 +4,7 @@ Class contents are in [the 15-compiled.zip file](https://github.com/jsoma/storyt
 
 No tracking URLS, but some helpful links:
 
+* [QGIS](http://www.qgis.org/en/site/)
 * [http://jonathansoma.com/tutorials/mapping/installing-qgis](http://jonathansoma.com/tutorials/mapping/installing-qgis)
 * [http://jonathansoma.com/tutorials/mapping/creating-geojson](http://jonathansoma.com/tutorials/mapping/creating-geojson)
 * [http://jonathansoma.com/tutorials/mapping/making-geojson-smaller](http://jonathansoma.com/tutorials/mapping/making-geojson-smaller)
