@@ -24,3 +24,9 @@ No tracking URLS, but some helpful links:
 * [10](http://kompis.neocities.org/homework13_2.html)
 * [11](http://kompis.neocities.org/homework13.html)
 * [12](http://mbongartz.neocities.org/storytelling_homework13.html)
+
+# Class 16: More QGIS
+
+[Look at all of these tutorials!](http://jonathansoma.com/tutorials/mapping/) *So, so many.*
+
+Class contents are in [16-compiled.zip file](https://github.com/jsoma/storytelling-2015/raw/master/class-15-16/16-compiled.zip)
