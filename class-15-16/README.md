@@ -30,3 +30,19 @@ No tracking URLS, but some helpful links:
 [Look at all of these tutorials!](http://jonathansoma.com/tutorials/mapping/) *So, so many.*
 
 Class contents are in [16-compiled.zip file](https://github.com/jsoma/storytelling-2015/raw/master/class-15-16/16-compiled.zip)
+
+<a id="homework-16"></a>
+
+## Homework
+
+**IMPORTANT** From here on out, all visualizations should be 795 pixels wide or smaller, unless you have a *really good reason*, in which case you can go up to 1080 pixels. Also, if you're using an older version of QGIS upgrade to at least 2.10.
+
+Your homework is going to be **three maps!**
+
+**Two of the maps are of the same data**, but presented differently. Maybe different color breaks, maybe dots-vs-[choropleth](https://en.wikipedia.org/wiki/Choropleth_map), maybe you joined at different geographic levels in QGIS, whatever you'd like. **Data should be joined from 2+ sources using QGIS.** Write a summary of the original data sources, your findings, and your Thoughts and Feelings about the differences between the two maps (does one tell the Truth?). While data wrangling should be done in QGIS, you can make the visual part using either QGIS or D3.
+
+**The third map** is a d3 map made using a 2+ datasets combined in QGIS. Write a paragraph explaining your findings.
+
+> **NOTE:** Remember I made you [a lot of tutorials](http://jonathansoma.com/tutorials/mapping/), and there are plenty of things to Google with QGIS.
+
+Homework is due Thursday morning by 9AM, posted in `#storytelling-hw`.
