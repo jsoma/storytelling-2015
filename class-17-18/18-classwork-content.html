@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js'></script>  
+</head>
+<body>
+  <div id="map"></div>
+  <script>
+  d3.csv("cities.csv", function(error, data) {
+    /* Take a look at our data */
+    var height = 500, width = 850;
+
+    var svg = d3.select("#map").append("svg").attr("height", height).attr("width", width);
+
+  var projection = d3.geo.albersUsa()
+            .translate([width / 2, height / 2]);
+
+    var xscale = d3.scale.linear().domain([-140.484377, -62.789065]).range([0, width]);
+    var yscale = d3.scale.linear().domain([21.763581, 51.933428]).range([height, 0]);
+
+    var chart = svg.append("g");
+
+    var state_scale = d3.scale.category20();
+    var zip_scale = d3.scale.linear().domain([0, 99999]).range(['beige', 'red']);
+
+    // Let's only take half of them
+    data = data.filter( function() { return Math.random() > 0.5 });
+
+    chart.selectAll("circle")
+        .data(data)
+        .enter()
+        .append('circle')
+        .attr('r', 3)
+        .attr('cx', function(d) {
+          var coords = [ d['lng'], d['lat'] ];
+          var projected_coords = projection(coords);
+          return projected_coords[0];
+        })
+        .attr('cy', function(d) {
+          var coords = [ d['lng'], d['lat'] ];
+          var projected_coords = projection(coords);
+          return projected_coords[1];
+        })
+        .style('fill', function(d) {
+          // return state_scale(d['state']);
+          // return state_scale(d['zip']);
+          return zip_scale(d['zip']);
+        });
+
+  });
+
+  </script>
+</body>
+</html>
