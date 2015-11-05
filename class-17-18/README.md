@@ -11,6 +11,8 @@ Class contents are in [the 18-compiled.zip file](https://github.com/jsoma/storyt
 * http://jonathansoma.com/columbia/18-classwork-iframe.html
 * http://jonathansoma.com/columbia/18-classwork-content.html
 
+Remember to use `python -m SimpleHTTPServer`!
+
 **Other Links**
 
 * [Layer attribution](http://maps.stamen.com/#howto)
