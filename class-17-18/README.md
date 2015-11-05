@@ -15,6 +15,7 @@ Remember to use `python -m SimpleHTTPServer`!
 
 **Other Links**
 
+* [Missed Connections](http://www.iliablinderman.com/connections/)
 * [Layer attribution](http://maps.stamen.com/#howto)
 * [http://directory.spatineo.com/](http://directory.spatineo.com/) for WMS layers
 * [PLUTO data](http://www.nyc.gov/html/dcp/html/bytes/dwn_pluto_mappluto.shtml)
