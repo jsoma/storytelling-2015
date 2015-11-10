@@ -1,8 +1,9 @@
 # Class 19: Web Applications, Part 1
 
-Class contents are in [the 18-compiled.zip file](https://github.com/jsoma/storytelling-2015/raw/master/class-19-20/19-compiled.zip)
 
 ## Before-Class Prep
+
+Class contents are in [the 19-compiled.zip file](https://github.com/jsoma/storytelling-2015/raw/master/class-19-20/19-compiled.zip)
 
 You might have these packages already, but let's give it a shot:
 
@@ -11,8 +12,6 @@ pip install csvkit
 pip install peewee
 pip install flask
 ````
-
-Also, download [19-compiled.zip file](https://github.com/jsoma/storytelling-2015/raw/master/class-19-20/19-compiled.zip).
 
 **Tracking URLs** are
 
@@ -32,35 +31,45 @@ Also, download [19-compiled.zip file](https://github.com/jsoma/storytelling-2015
 
 Running a Flask app
     
-    python app.py
+````bash
+python app.py
+````
 
 Using CSVKit to create a SQLite database
 
-    csvsql --db sqlite:///[filename].db --insert --table [tablename] [filename].csv
+````bash
+csvsql --db sqlite:///[filename].db --insert --table [tablename] [filename].csv
+````
 
 Connecting to a databse from peewee
 
-    from peewee import *
+````python
+from peewee import *
 
-    db = SqliteDatabase('[filename].db')
+db = SqliteDatabase('[filename].db')
+````
 
 Sample model for peewee
 
-    class Person(Model):
-        name = CharField()
-        birthday = DateField()
-        is_relative = BooleanField()
+````python
+class Person(Model):
+    name = CharField()
+    birthday = DateField()
+    is_relative = BooleanField()
 
-        class Meta:
-            database = db # previously defined (see above)
+    class Meta:
+        database = db # previously defined (see above)
+````
 
 Sample route for Flask
 
+````python
     @app.route('/path/to/cat')
     def index():
         return render_template('cat_picture.html')
+````
 
-## Homework
+## Class 19 Homework
 
 ### Part one: Peeking at others' work
 
