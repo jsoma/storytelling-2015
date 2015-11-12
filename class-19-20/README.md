@@ -96,6 +96,8 @@ If your project is something huge, and you think you aren't going to be done by 
 
 This *seems* really formal but it's honestly the same thing we've been doing for the past million weeks. This time you just get to work in groups and I'm looking for something a little more polished.
 
+<div id="class20">&nbsp;</div>
+
 # Class 20: Web Applications with Flask, Part II
 
 We're using the same code as last time, I've packaged it up in [the 20-compiled.zip file](https://github.com/jsoma/storytelling-2015/raw/master/class-19-20/20-compiled.zip)
