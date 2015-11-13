@@ -104,7 +104,7 @@ We're using the same code as last time, I've packaged it up in [the 20-compiled.
 
 ### Review
 
-[Frozen Flask](http://pythonhosted.org/Frozen-Flask/) to build out a static site
+You can find the completed work from class in [the 20-nyc-schools-partial.zip file](https://github.com/jsoma/storytelling-2015/raw/master/class-19-20/20-nyc-schools-partial.zip)
 
 **Database Concepts:** Foreign keys, primary keys, one-to-many, one-to-one, many-to-many, aggregate functions
 
