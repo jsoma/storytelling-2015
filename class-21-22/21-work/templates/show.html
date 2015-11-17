@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% block content %}
+<p><a href="/">Back to full school list</a></p>
+<h1>{{ school.school_name }}</h1>
+
+<div id="map" style="height: 250px;"></div>
+
+
+<script>
+var map = L.map('map').setView([40.7127, -74.0], 10);
+var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+});
+
+map.addLayer(layer);
+
+L.marker([{{ school.latitude }}, {{ school.longitude }}]).addTo(map)
+  .bindPopup("<strong>{{ school.school_name }}</strong>").openPopup();
+
+</script>
+
+<p>Borough: {{ school.boro }}</p>
+<p>Address: {{ school.primary_address_line_1 }}</p>
+<p>Phone Number: {{ school.phone_number }}</p>
+<p>Number of students: {{ school.total_students }} (NYC average: {{ avg }}, percentile: {{ student_count_percentile }})</p>
+{% if school.total_students < avg %}
+	<p>This school has a below-average number of students</p>
+{% elif  school.total_students > avg %}
+	<p>This school has an above-average number of students
+{% else %}
+	<p>This school has an average number of students</p>
+{% endif %}
+
+{% if score %}
+	<h3>Test scores</h3>
+
+	<p>Critical reading: {{ score.critical_reading_mean }}</p>
+	<p>Mathematics: {{ score.mathematics_mean }}</p>
+	<p>Writing: {{ score.writing_mean }}</p>
+{% else %}
+<div class="alert alert-danger" role="alert">
+	<p>Sorry, we don't have any scores for this school!</p>
+</div>
+{% endif %}
+{% endblock %}

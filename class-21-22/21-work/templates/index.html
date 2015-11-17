@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+{% block content %}
+<h1>Welcome to the NYC high schools site!</h1>
+
+<p>New York City has {{ count }} high schools</p>
+
+<p>Do you want to look yours up?</p>
+
+<!-- Single button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-info btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Select a borough <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="/borough/Brooklyn">Brooklyn</a></li>
+    <li><a href="/borough/Manhattan">Manhattan</a></li>
+    <li><a href="/borough/Queens">Queens</a></li>
+    <li><a href="/borough/Staten Island">Staten Island</a></li>
+    <li><a href="/borough/Bronx">Bronx</a></li>
+  </ul>
+</div>
+
+
+<ul>
+{% for school in schools %}
+	<li><a href="/schools/{{ school.dbn }}">{{ school.school_name }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}
+
+
+
+
+
+
+
+

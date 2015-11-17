@@ -8,6 +8,8 @@ Class contents are in [the 21-compiled.zip file](https://github.com/jsoma/storyt
 
 If you want to review, take a look at my [webapps tutorials](http://jonathansoma.com/tutorials/webapps/) (steps 5-9, I think), it's very close to what we did in class.
 
+Today's finished work is at [the 21-complete.zip file](https://github.com/jsoma/storytelling-2015/raw/master/class-21-22/21-complete.zip)
+
 ### Links
 
 * [Bootstrap](http://getbootstrap.com/)
