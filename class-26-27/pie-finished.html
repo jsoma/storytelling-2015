@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>  
+<style>
+body {
+  font-family: Arial;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+  <div id="pie"></div>
+  <div id="small-multiples"></div>
+  <script>
+
+  var width = 960,
+      height = 500,
+      radius = 200;
+
+  var color_scale = d3.scale.category10();
+
+  var chart = d3.select("#pie").append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .append("g")
+      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+  d3.csv("federal-spending.csv", function(data) {
+    var pie = d3.layout.pie()
+        .sort(null)
+        .value(function(d) { return +d.pct_spending; });
+
+    var g = chart.selectAll(".arc")
+        .data(pie(data))
+        .enter().append("g")
+        .attr("class", "arc");
+
+    var arc = d3.svg.arc()
+        .outerRadius(radius - 10)
+        .innerRadius(0);
+
+    g.append("path")
+        .attr("d", arc)
+        .style("fill", function(d) { return color_scale(d.data.category); });
+
+    var labelArc = d3.svg.arc()
+        .outerRadius(radius * 2)
+        .innerRadius(0);
+
+    g.append("text")
+        .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+        .attr("dy", ".35em")
+        .text(function(d) { return d.data.category; });
+  });
+  </script>
+
+  <script>
+
+  var small_width = 150,
+      small_height = 150,
+      small_radius = 75;
+  
+  d3.csv("federal-spending.csv", function(data) {
+    
+    // for every single category, make a new set of data 
+    // each set of data only has two points, the original data point and 'other' spending
+    per_category_data = data.map( function(d) {
+      return [
+        { "category": d['category'], "pct_spending": +d['pct_spending'] },
+        { "category": "Other", "pct_spending": 100 - d['pct_spending'] }
+      ]
+    });
+
+    per_category_data = per_category_data.sort( function(a, b) {
+      return a[0]['pct_spending'] < b[0]['pct_spending'];
+    })
+        
+    // Bind the data to these new parts, then enter/append
+    // so you're inserting an svg for every single category
+    var charts = d3.select("#small-multiples")
+        .selectAll("svg")
+        .data(per_category_data)
+        .enter()
+        .append("svg")
+        .attr("width", small_width)
+        .attr("height", small_height)
+        .append("g")
+        .attr("transform", "translate(" + small_width / 2 + "," + small_height / 2 + ")");
+    
+    // Do the pie layout piece the same way
+    var pie = d3.layout.pie()
+        .sort(null)
+        .value(function(d) { return +d.pct_spending; });
+
+    var g = charts.selectAll(".arc")
+        .data(function(d) {
+          return pie(d);
+        })
+        .enter().append("g")
+        .attr("class", "arc");
+
+    var arc = d3.svg.arc()
+        .outerRadius(small_radius - 10)
+        .innerRadius(50);
+
+    g.append("path")
+        .attr("d", arc)
+        .style("fill", function(d) { 
+          if(d.data.category === "Other") {
+            return "#e1e1e1";
+          } else {
+            return "#ffcc00";
+          }
+        });
+
+    charts.append("text")
+          .attr("transform", function(d) { return "translate(0,20)"; })
+          .attr('text-anchor', 'middle')
+          .text(function(d) { 
+            return d[0].category;
+          });
+
+    charts.append("text")
+          .attr("transform", function(d) { return "translate(0,0)"; })
+          .attr('text-anchor', 'middle')
+          .text(function(d) { 
+            return d[0].pct_spending;
+          })
+          .style('font-size', '30px')
+          .style('font-weight', 'bold');
+
+  });
+  </script>
+</body>
