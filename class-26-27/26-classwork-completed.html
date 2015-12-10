@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>  
+<style>
+body {
+  font-family: Arial;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+  <div id="pie"></div>
+  <div id="small-multiples"></div>
+  <script>
+  var width = 960,
+      height = 500,
+      radius = 200;
+
+  var color_scale = d3.scale.category10();
+
+  var chart = d3.select("#pie").append("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .append("g")
+      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+
+  d3.csv("federal-spending.csv", function(data) {
+    var pie = d3.layout.pie()
+                .sort(null)
+                .value(function(d) {
+                  return +d['pct_spending'];
+                });
+
+    var arc = d3.svg.arc()
+                .outerRadius(radius)
+                .innerRadius(100);
+
+    var wedges = chart.selectAll("path")
+                      .data(pie(data))
+                      .enter()
+                      .append("path")
+                      .attr("d", arc)
+                      .style('fill', function(d) {
+                        return color_scale(d.data['category']);
+                      });
+
+    var labelArc = d3.svg.arc()
+                .outerRadius(radius * 2 + 25)
+                .innerRadius(0);
+
+    chart.selectAll("text")
+          .data(pie(data))
+          .enter()
+          .append("text")
+          .attr('transform', function(d) {
+            return "translate(" + labelArc.centroid(d) + ")";
+          })
+          .text( function(d) {
+            return d.data['category'];
+          })
+          .attr('text-anchor', 'middle');
+
+    chart.append("text")
+          .text("SPENDING")
+          .attr('transform', function(d) {
+            return "translate(0,0)";
+          })
+          .attr('text-anchor', 'middle')
+          .style('font-size', '20px');
+  });
+  </script>
+
+  <script>
+
+  var tiny_width = 160,
+      tiny_height = 160,
+      tiny_radius = 75;
+
+  d3.csv("federal-spending.csv", function(data) {
+
+    data = data.sort(function(a, b) {
+      return +a['pct_spending'] < +b['pct_spending'];
+    });
+
+      var per_category_data = data.map( function(d) {
+        return [
+          { "category": d['category'], "pct_spending": +d['pct_spending'] },
+          { "category": "Remainder", "pct_spending": 100 - d['pct_spending'] }
+        ]
+      });
+
+      var charts = d3.select("#small-multiples")
+                    .selectAll("svg")
+                    .data(per_category_data)
+                    .enter()
+                    .append("svg")
+                    .attr("width", tiny_width)
+                    .attr("height", tiny_height)
+                    .append("g")
+                    .attr("transform", "translate(" + tiny_width / 2 + "," + tiny_height / 2 + ")");
+
+    var pie = d3.layout.pie()
+                .sort(null)
+                .value(function(d) {
+                  return +d['pct_spending'];
+                });
+
+    var arc = d3.svg.arc()
+          .outerRadius(tiny_radius)
+          .innerRadius(50);
+
+    var wedges = charts.selectAll("path")
+                      .data(function(d) {
+                        return pie(d);
+                      })
+                      .enter()
+                      .append("path")
+                      .attr("d", arc)
+                      .style("fill", function(d) {
+                        if(d.data['category'] === "Remainder") {
+                          return '#e1e1e1';
+                        } else {
+                          return '#FF33CC';
+                          // return color_scale(d.data['category']);
+                        }
+                      });
+
+    var categoryLabel = charts.append("text")
+                     .text(function(d) {
+                      return d[0]['category'];
+                     })
+                     .attr('text-anchor', 'middle')
+                     .attr("transform", "translate(0,17)");
+
+    var amountLabel = charts.append("text")
+                     .text(function(d) {
+                      return d[0]['pct_spending'] + "%";
+                     })
+                     .attr('text-anchor', 'middle')
+                     .style('font-size', '28px')
+                     .style('font-weight', 'bold')
+                     .attr("transform", "translate(0,0)");
+
+
+  });
+
+  </script>
+</body>

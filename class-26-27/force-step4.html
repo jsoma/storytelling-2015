@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>  
+<style>
+body {
+  font-family: Arial;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+  <div id="force"></div>
+  <script>
+  var width = 500,
+      height = 500;
+  
+  var svg = d3.select('#force')
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height);
+  
+  // You need nodes, and you need links
+  var nodes = [ 
+    { name: "A" }, // 0
+    { name: "B" }, // 1
+    { name: "C" }, // 2
+    { name: "D" }, // 3
+    { name: "E" }, // 4
+    { name: "F" }, // 5
+    { name: "G" },  // 6
+    { name: "H" },  // 7
+    { name: "I" }  // 8
+  ];
+  
+  var links = [
+      { source: 0, target: 1 },
+      { source: 1, target: 3 },
+      { source: 0, target: 2 },
+      { source: 3, target: 6 },
+      { source: 2, target: 5 },
+      { source: 4, target: 1 },
+      { source: 0, target: 5 },
+      { source: 4, target: 0 },
+      { source: 4, target: 5 },
+      { source: 6, target: 3 },
+      { source: 6, target: 2 },
+      { source: 8, target: 7 }
+  ];
+
+  // Use the force layout
+  // charge: repulsion between nodes (default: -30)
+  // gravity: keeps them in the middle (default: 0.1)
+  // linkDistance: distance between links (default: 20)
+  // linkStrength: rigidity of links (default: 1)
+  // friction: resistance to moving (default: 0.9)
+  
+  var force = d3.layout.force()
+      .size([width, height])
+      .nodes(nodes)
+      .links(links)
+      .charge(-100)
+      .linkDistance(50)
+      .gravity(0.1)
+      .friction(0.9);
+
+  ;
+        
+  var link = svg.selectAll('line')
+      .data(links)
+      .enter()
+      .append('line')
+      .style('stroke', '#000000');
+  
+  var node = svg
+      .selectAll('circle')
+      .data(nodes)
+      .enter()
+      .append('circle')
+      .attr('r', 5)
+      .style('fill', '#000000')
+      .call(force.drag);
+  
+  force.on('tick', function() {
+    node.attr('cx', function(d) {return d.x;})
+        .attr('cy', function(d) {return d.y;});
+
+    link.attr('x1', function(d) {return d.source.x;})
+       .attr('y1', function(d) {return d.source.y;})
+       .attr('x2', function(d) {return d.target.x;})
+       .attr('y2', function(d) {return d.target.y;});
+  });
+
+  // run the simulation of the forces
+  force.start();
+  
+  </script>
+</body>

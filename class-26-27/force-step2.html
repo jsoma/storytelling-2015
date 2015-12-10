@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>  
+<style>
+body {
+  font-family: Arial;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+  <div id="force"></div>
+  <script>
+  var width = 500,
+      height = 500;
+  
+  var svg = d3.select('#force')
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height);
+  
+  // You need nodes, and you need links
+  var nodes = [ 
+    { name: "A", category: "Non-Profit" }, // 0
+    { name: "B", category: "Business" }, // 1
+    { name: "C", category: "Business" }, // 2
+    { name: "D", category: "Non-Profit" }, // 3
+    { name: "E", category: "Non-Profit" }, // 4
+    { name: "F", category: "Business" }, // 5
+    { name: "G", category: "Business" },  // 6
+    { name: "H", category: "Business" },  // 7
+    { name: "I", category: "Non-Profit" }  // 8
+  ];
+  
+  var links = [
+      { source: 0, target: 1, associations: 5 },
+      { source: 0, target: 2, associations: 10 },
+      { source: 0, target: 3, associations: 2 },
+      { source: 2, target: 3, associations: 7 },
+      { source: 0, target: 3, associations: 2 },
+      { source: 4, target: 5, associations: 2 },
+      { source: 4, target: 6, associations: 7 },
+      { source: 4, target: 3, associations: 4 },
+      { source: 6, target: 2, associations: 5 },
+      { source: 8, target: 7, associations: 10 }
+  ];
+
+  var distance_scale = d3.scale.linear().domain([0,10]).range([200,50])
+  // Use the force layout
+  // charge: repulsion between nodes (default: -30)
+  // gravity: keeps them in the middle (default: 0.1)
+  // linkDistance: distance between links (default: 20)
+  // linkStrength: rigidity of links (default: 1)
+  // friction: resistance to moving (default: 0.9)
+  
+  var force = d3.layout.force()
+      .size([width, height])
+      .nodes(nodes)
+      .links(links)
+      .charge(-200)
+      .linkDistance( function(d) {
+        // how much of that linkDistance will we use?
+        return distance_scale(d['associations']);
+      });
+       
+  var link_color_scale = d3.scale.linear().domain([0,10]).range(['beige', 'red'])
+   
+  var link = svg.selectAll('line')
+      .data(links)
+      .enter()
+      .append('line')
+      .style('stroke-width', 2)
+      .style('stroke', function(d) {
+        return link_color_scale(d['associations']);
+      });
+  
+  var node = svg
+      .selectAll('circle')
+      .data(nodes)
+      .enter()
+      .append('circle')
+      .attr('r', 5)
+      .style('fill', '#000000')
+      .call(force.drag);
+  
+  force.on('tick', function() {
+    node.attr('cx', function(d) {return d.x;})
+        .attr('cy', function(d) {return d.y;});
+
+    link.attr('x1', function(d) {return d.source.x;})
+       .attr('y1', function(d) {return d.source.y;})
+       .attr('x2', function(d) {return d.target.x;})
+       .attr('y2', function(d) {return d.target.y;});
+  });
+
+  // run the simulation of the forces
+  force.start();
+  
+  </script>
+</body>

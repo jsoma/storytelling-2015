@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>  
+<style>
+body {
+  font-family: Arial;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+  <div id="force"></div>
+  <script>
+  var width = 1000,
+      height = 750;
+  
+  var svg = d3.select('#force')
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height);
+
+  var nodesByName = {};
+  function nodeByName(name) {
+    return nodesByName[name] || (nodesByName[name] = {name: name});
+  }
+  
+  d3.csv("force-characters.csv", function(links) {
+
+    // give each link a 'source' and a 'target'
+    links.forEach(function(link) {
+      link.source = nodeByName(link.person_a);
+      link.target = nodeByName(link.person_b);
+    });
+
+    var nodes = d3.values(nodesByName);
+    
+    var force = d3.layout.force()
+        .size([width, height])
+        .nodes(nodes)
+        .links(links)
+        .charge(-100)
+        .linkDistance(40)
+        .gravity(0.2)
+        .friction(0.9);
+    
+    var interaction_color_scale = d3.scale.category10();
+    
+    var link = svg.selectAll('line')
+        .data(links)
+        .enter()
+        .append('line')
+        .style('stroke', function(d) {
+          return interaction_color_scale(d['interaction_type']);
+        });
+
+    var node = svg
+        .selectAll('circle')
+        .data(nodes)
+        .enter()
+        .append('circle')
+        .attr('r', 3)
+        .style('fill', '#000000')
+        .call(force.drag);
+
+    force.on('tick', function() {
+      console.log('tick');
+      node.attr('cx', function(d) {return d.x;})
+          .attr('cy', function(d) {return d.y;});
+
+      link.attr('x1', function(d) {return d.source.x;})
+         .attr('y1', function(d) {return d.source.y;})
+         .attr('x2', function(d) {return d.target.x;})
+         .attr('y2', function(d) {return d.target.y;});
+    });
+
+    // run the simulation of the forces
+    force.start();
+  });
+  
+  </script>
+</body>

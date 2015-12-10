@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>  
+<style>
+body {
+  font-family: Arial;
+  font-size: 12px;
+}
+</style>
+</head>
+<body>
+  <div id="force"></div>
+  <script>
+  var width = 500,
+      height = 500;
+  
+  var svg = d3.select('#force')
+      .append('svg')
+      .attr('width', width)
+      .attr('height', height);
+  
+  // You need nodes, and you need links
+  var nodes = [ 
+    { name: "A" },
+    { name: "B" }
+  ];
+  
+  var links = [
+      { source: 0, target: 1 }
+  ];  
+  </script>
+</body>
