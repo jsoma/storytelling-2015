@@ -23,7 +23,7 @@ body {
   // You need nodes and you need links
   var nodes = [ 
     { name: "A" }, // 0
-    { name: "B" }, // 1
+    { name: "B" }  // 1
 
   ];
   
@@ -32,11 +32,6 @@ body {
   ];
 
   // Use the force layout
-  // charge: repulsion between nodes (default: -30)
-  // gravity: keeps them in the middle (default: 0.1)
-  // linkDistance: distance between links (default: 20)
-  // linkStrength: rigidity of links (default: 1)
-  // friction: resistance to moving (default: 0.9)
   
   var force = d3.layout.force()
       .size([width, height])
